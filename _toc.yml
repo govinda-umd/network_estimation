@@ -1,0 +1,16 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+# defaults:
+  # numbered: True
+parts:
+  - caption: December 2022
+    chapters:
+      - file: nb/dec22/dec22
+
+      - file: nb/dec22/dec22_updates
+        sections:
+
+          - file: nb/dec22/00-desc-tvb_tutorial
