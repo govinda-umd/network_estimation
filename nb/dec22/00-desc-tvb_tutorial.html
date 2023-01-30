@@ -37,19 +37,24 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Summary" href="../jan23/jan23.html" />
     <link rel="prev" title="Updates" href="dec22_updates.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -118,6 +123,35 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      December 20, 2022: The Virtual Brain (TVB) tutorial
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  January 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jan23/jan23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../jan23/jan23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jan23/00-desc-create_network_dynamics.html">
+     January 18-20, 2023: The Virtual Brain (TVB): create network dynamics
     </a>
    </li>
   </ul>
@@ -243,7 +277,138 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>December 20, 2022: The Virtual Brain (TVB) tutorial<a class="headerlink" href="#december-20-2022-the-virtual-brain-tvb-tutorial" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">tvb.simulator.lab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">tvb.simulator.lab</span> <span class="k">as</span> <span class="nn">tsl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/govindas/venvs/nw_estim/lib/python3.9/site-packages/tvb/datatypes/surfaces.py:64: UserWarning: Geodesic distance module is unavailable; some functionality for surfaces will be unavailable.
+  warnings.warn(msg)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create empty connectivity</span>
+<span class="n">wm</span> <span class="o">=</span> <span class="n">connectivity</span><span class="o">.</span><span class="n">Connectivity</span><span class="p">()</span>
+
+<span class="c1"># First weights and distances</span>
+<span class="n">nor</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">motif_all_to_all</span><span class="p">(</span><span class="n">number_of_regions</span><span class="o">=</span><span class="n">nor</span><span class="p">)</span>
+
+<span class="c1"># Centers, specify the number of regions, otherwise it&#39;ll use a default value.</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">centres_spherical</span><span class="p">(</span><span class="n">number_of_regions</span><span class="o">=</span><span class="n">nor</span><span class="p">)</span>
+
+<span class="c1"># By default, the new regions labels are numeric characters, ie [0, 1, ...]</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">create_region_labels</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;alphabetic&#39;</span><span class="p">)</span>
+
+<span class="c1"># But custom region labels can be used</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">region_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;a1 a2 a3 a4&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+
+<span class="c1"># plot_matrix(wm.weights, connectivity=wm, binary_matrix=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">wm</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="n">wm</span><span class="p">,</span> <span class="n">binary_matrix</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/00-desc-tvb_tutorial_3_0.png" src="../../_images/00-desc-tvb_tutorial_3_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tsl</span><span class="o">.</span><span class="n">plot_connectivity</span><span class="p">(</span>
+    <span class="n">wm</span><span class="p">,</span> 
+    <span class="n">num</span><span class="o">=</span><span class="s1">&#39;weights&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/00-desc-tvb_tutorial_4_0.png" src="../../_images/00-desc-tvb_tutorial_4_0.png" />
+<img alt="../../_images/00-desc-tvb_tutorial_4_1.png" src="../../_images/00-desc-tvb_tutorial_4_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wm</span> <span class="o">=</span> <span class="n">tsl</span><span class="o">.</span><span class="n">connectivity</span><span class="o">.</span><span class="n">Connectivity</span><span class="p">()</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">number_of_regions</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">centres_spherical</span><span class="p">(</span><span class="n">number_of_regions</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">region_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">tract_lengths</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">wm</span><span class="o">.</span><span class="n">weights</span>
+<span class="n">wm</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+
+<span class="n">tsl</span><span class="o">.</span><span class="n">plot_connectivity</span><span class="p">(</span>
+    <span class="n">wm</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/00-desc-tvb_tutorial_5_0.png" src="../../_images/00-desc-tvb_tutorial_5_0.png" />
+<img alt="../../_images/00-desc-tvb_tutorial_5_1.png" src="../../_images/00-desc-tvb_tutorial_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wm</span> <span class="o">=</span> <span class="n">tsl</span><span class="o">.</span><span class="n">connectivity</span><span class="o">.</span><span class="n">Connectivity</span><span class="o">.</span><span class="n">from_file</span><span class="p">()</span>
+<span class="n">wm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  ERROR  Could not import tvb_data Python module for default data-set!
+Traceback (most recent call last):
+  File &quot;/home/govindas/venvs/nw_estim/lib/python3.9/site-packages/tvb/basic/readers.py&quot;, line 226, in try_get_absolute_path
+    module_import = importlib.import_module(relative_module)
+  File &quot;/home/govindas/miniconda3/lib/python3.9/importlib/__init__.py&quot;, line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 1030, in _gcd_import
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 1007, in _find_and_load
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 972, in _find_and_load_unlocked
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 228, in _call_with_frames_removed
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 1030, in _gcd_import
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 1007, in _find_and_load
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named &#39;tvb_data&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">wm</span> <span class="o">=</span> <span class="n">tsl</span><span class="o">.</span><span class="n">connectivity</span><span class="o">.</span><span class="n">Connectivity</span><span class="o">.</span><span class="n">from_file</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">wm</span>
+
+<span class="nn">File ~/venvs/nw_estim/lib/python3.9/site-packages/tvb/datatypes/connectivity.py:740,</span> in <span class="ni">Connectivity.from_file</span><span class="nt">(cls, source_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">737</span>     <span class="n">result</span><span class="o">.</span><span class="n">tract_lengths</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read_field</span><span class="p">(</span><span class="s2">&quot;tract_lengths&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">740</span>     <span class="n">reader</span> <span class="o">=</span> <span class="n">ZipReader</span><span class="p">(</span><span class="n">source_full_path</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">741</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_read</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File ~/venvs/nw_estim/lib/python3.9/site-packages/tvb/basic/readers.py:165,</span> in <span class="ni">ZipReader.__init__</span><span class="nt">(self, zip_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zip_path</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">165</span>     <span class="bp">self</span><span class="o">.</span><span class="n">zip_archive</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_path</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/zipfile.py:1239,</span> in <span class="ni">ZipFile.__init__</span><span class="nt">(self, file, mode, compression, allowZip64, compresslevel, strict_timestamps)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1237</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1239</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fp</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">filemode</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>     <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1241</span>         <span class="k">if</span> <span class="n">filemode</span> <span class="ow">in</span> <span class="n">modeDict</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;connectivity_76.zip&#39;
 </pre></div>
 </div>
 </div>
@@ -281,6 +446,13 @@ const thebe_selector_output = ".output, .cell_output"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Updates</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../jan23/jan23.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
