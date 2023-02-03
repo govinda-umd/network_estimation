@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Summary &#8212; Network Estimation from Time Series Data</title>
+    <title>February 3, 2023: Create a 2-cluster network and random networks: Simulate dynamics with Linear neural dynamics model &#8212; Network Estimation from Time Series Data</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,8 +54,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Updates" href="dec22_updates.html" />
-    <link rel="prev" title="Welcome" href="../../intro.html" />
+    <link rel="prev" title="Updates" href="feb23_updates.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -104,14 +103,14 @@
   December 2022
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dec22/dec22.html">
    Summary
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="dec22_updates.html">
+  <a class="reference internal" href="../dec22/dec22_updates.html">
    Updates
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -121,7 +120,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="00-desc-tvb_tutorial.html">
+    <a class="reference internal" href="../dec22/00-desc-tvb_tutorial.html">
      December 20, 2022: The Virtual Brain (TVB) tutorial
     </a>
    </li>
@@ -167,24 +166,24 @@
   February 2023
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../feb23/feb23.html">
+  <a class="reference internal" href="feb23.html">
    Summary
   </a>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../feb23/feb23_updates.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="feb23_updates.html">
    Updates
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../feb23/00-network-2clusters_random-model-linear.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      February 3, 2023: Create a 2-cluster network and random networks: Simulate dynamics with Linear neural dynamics model
     </a>
    </li>
@@ -231,9 +230,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/nb/dec22/dec22.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/nb/feb23/00-network-2clusters_random-model-linear.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -251,7 +250,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/govinda-umd/network_estimation/issues/new?title=Issue%20on%20page%20%2Fnb/dec22/dec22.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/govinda-umd/network_estimation/issues/new?title=Issue%20on%20page%20%2Fnb/feb23/00-network-2clusters_random-model-linear.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -267,6 +266,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/govinda-umd/network_estimation/master?urlpath=tree/docs/nb/feb23/00-network-2clusters_random-model-linear.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -279,7 +295,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Summary</h1>
+                <h1>February 3, 2023: Create a 2-cluster network and random networks: Simulate dynamics with Linear neural dynamics model</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -290,12 +306,54 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
-<p>Summary of progress in Dec 2022</p>
-<ul class="simple">
-<li><p><strong>Progress</strong></p></li>
-</ul>
+  <div class="tex2jax_ignore mathjax_ignore section" id="february-3-2023-create-a-2-cluster-network-and-random-networks-simulate-dynamics-with-linear-neural-dynamics-model">
+<h1>February 3, 2023: Create a 2-cluster network and random networks: Simulate dynamics with Linear neural dynamics model<a class="headerlink" href="#february-3-2023-create-a-2-cluster-network-and-random-networks-simulate-dynamics-with-linear-neural-dynamics-model" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tvb</span>
+<span class="kn">import</span> <span class="nn">tvb.simulator.lab</span> <span class="k">as</span> <span class="nn">tsl</span>
+<span class="kn">from</span> <span class="nn">tvb.simulator.plot.phase_plane_interactive</span> <span class="kn">import</span> <span class="n">PhasePlaneInteractive</span>
+<span class="kn">from</span> <span class="nn">tvb.simulator.plot.timeseries_interactive</span> <span class="kn">import</span> <span class="n">TimeSeriesInteractivePlotter</span>
+
+<span class="c1"># main dirs</span>
+<span class="n">proj_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;network_estimation&#39;</span><span class="p">)</span>
+<span class="n">month_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">proj_dir</span><span class="si">}</span><span class="s2">/nb/jan23&quot;</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Arial&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;errorbar.capsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="kn">import</span> <span class="nn">cmasher</span> <span class="k">as</span> <span class="nn">cmr</span>  <span class="c1"># CITE ITS PAPER IN YOUR MANUSCRIPT</span>
+
+<span class="c1"># folders</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">proj_dir</span><span class="p">)</span>
+<span class="c1"># import helpers.dataset_utils_v1 as dataset_utils</span>
+<span class="c1"># import helpers.fc_utils as fc_utils</span>
+<span class="c1"># import helpers.isc_utils as isc_utils</span>
+<span class="c1"># import helpers.network_utils as network_utils</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/govindas/.local/lib/python3.9/site-packages/tvb/datatypes/surfaces.py:60: UserWarning: Geodesic distance module is unavailable; some functionality for surfaces will be unavailable.
+  warnings.warn(msg)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -311,7 +369,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./nb/dec22"
+            path: "./nb/feb23"
         },
         predefinedOutput: true
     }
@@ -323,19 +381,12 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../../intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="feb23_updates.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome</p>
+            <p class="prev-next-title">Updates</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="dec22_updates.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Updates</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
