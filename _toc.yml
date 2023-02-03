@@ -14,3 +14,23 @@ parts:
         sections:
 
           - file: nb/dec22/00-desc-tvb_tutorial
+
+  - caption: January 2023
+    chapters:
+      - file: nb/jan23/jan23
+
+      - file: nb/jan23/jan23_updates
+        sections:
+
+          - file: nb/jan23/00-desc-create_network_dynamics
+
+          - file: nb/jan23/01-model-linear
+
+  - caption: February 2023
+    chapters:
+      - file: nb/feb23/feb23
+
+      - file: nb/feb23/feb23_updates
+        sections:
+
+          - file: nb/feb23/00-network-2clusters_random-model-linear
