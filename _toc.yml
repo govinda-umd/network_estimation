@@ -34,3 +34,5 @@ parts:
         sections:
 
           - file: nb/feb23/00-network-2clusters_random-model-linear
+
+          - file: nb/feb23/01-network-2clusters_random-model-linear
