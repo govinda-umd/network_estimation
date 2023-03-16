@@ -420,7 +420,7 @@ plot_roi_time_series(
 
 # ### network
 
-# In[18]:
+# In[17]:
 
 
 args.cmap = cmr.iceburn
@@ -428,7 +428,7 @@ args.cmap = cmr.iceburn
 display_network(args, W)
 
 
-# In[17]:
+# In[18]:
 
 
 args.gamma = 0.75 * np.ones(shape=(args.num_rois.sum(),1))
@@ -459,7 +459,7 @@ sp.io.savemat(
 out_dict = simulate(eng, model_path, model, in_dict)
 
 
-# In[18]:
+# In[19]:
 
 
 args.subplot_layout = 'row-col'
@@ -471,7 +471,7 @@ plot_roi_time_series(
 )
 
 
-# In[17]:
+# In[20]:
 
 
 # eng.quit()

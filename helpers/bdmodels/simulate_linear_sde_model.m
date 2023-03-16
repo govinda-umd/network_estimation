@@ -3,18 +3,15 @@ function [out_struct] = simulate_linear_sde_model(in_struct)
     addpath(genpath('/home/govindas/network_estimation'));
 
     % model
-    n = size(in_struct.Kij, 1);
-    sys = LinearSDE(in_struct.Kij);
+    n = size(in_struct.W, 1);
+    sys = LinearSDE(in_struct.W);
     
     % parameter values
-    if isfield(in_struct, 'gamma')
-        sys.pardef = bdSetValue(sys.pardef, 'gamma', in_struct.gamma);
+    if isfield(in_struct, 'A')
+        sys.pardef = bdSetValue(sys.pardef, 'A', in_struct.A);
     end
-    if isfield(in_struct, 'bu')
-        sys.pardef = bdSetValue(sys.pardef, 'bu', in_struct.bu);
-    end
-    if isfield(in_struct, 'bl')
-        sys.pardef = bdSetValue(sys.pardef, 'bl', in_struct.bl);
+    if isfield(in_struct, 'B')
+        sys.pardef = bdSetValue(sys.pardef, 'B', in_struct.B);
     end
     if isfield(in_struct, 'Iamp')
         sys.pardef = bdSetValue(sys.pardef, 'Iamp', in_struct.Iamp);

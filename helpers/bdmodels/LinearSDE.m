@@ -1,6 +1,6 @@
 % Linear model of neural activity.
-%    dx = [F(t, x)] .* dt + [G(t, x)] .* dWt
-%    F(t, x) = -gamma.*x + (x - bl).*(bu - x).*(Inet + Iapp)
+%    dx = F(t, x) .* dt + G(t, x) .* dN(t)
+%    F(t, x) = -A.*x + (x - -(B)).*(B - x).*(Inet + Iapp)
 %    G(t, x) = sigma .* eye(n)
 %
 % The model shunts the external input with state variable to give an upper
@@ -10,9 +10,9 @@
 %   sys = Linear();         % Construct the system struct.
 %   gui = bdGUI(sys);       % Open the Brain Dynamics GUI.
 %
-function sys = LinearSDE(Kij)    
+function sys = LinearSDE(W)    
     % number of nodes
-    n = size(Kij, 1);
+    n = size(W, 1);
     
     % Handle to SDE function
     sys.sdeF = @sdeF;
@@ -20,10 +20,9 @@ function sys = LinearSDE(Kij)
     
     % SDE parameters
     sys.pardef = [
-        struct('name','Kij', 'value',Kij, 'lim',[0, 10])
-        struct('name','gamma', 'value',0.5*ones(n,1), 'lim',[0, 100])
-        struct('name','bu', 'value',1.0, 'lim',[-5, 5])
-        struct('name','bl', 'value',-1.0, 'lim',[-5, 5])
+        struct('name','W', 'value',W, 'lim',[0, 10])
+        struct('name','A', 'value',0.5*ones(n,1), 'lim',[0, 100])
+        struct('name','B', 'value',1.0, 'lim',[-5, 5])
         struct('name','Iamp', 'value',1, 'lim',[0, 10])
         struct('name','tau', 'value',1, 'lim',[0, 10])
         struct('name','T', 'value',2, 'lim',[0, 10])
@@ -34,14 +33,14 @@ function sys = LinearSDE(Kij)
     % SDE variables        
     sys.vardef = [
         struct('name','x', 'value',zeros(n,1), 'lim',[0, 1])        
-        ];
+    ];
     
     % time span
     sys.tspan = [0 20];
     sys.tstep = 0.001;
 
     % sde options
-    sys.sdesolver = {@sdeSH, @sdeEM};
+    sys.sdesolver = {@sdeEM, @sdeSH};
     sys.sdeoption.RelTol = 1e-6;
     sys.sdeoption.InitialStep = 0.001;
     sys.sdeoption.MaxStep = 0.005;
@@ -52,15 +51,14 @@ function sys = LinearSDE(Kij)
     sys.panels.bdLatexPanel.latex = {
         'Linear model equations';
         '';
-        'd$\textbf{x} = \textbf{F}(t, \textbf{x}) \, $d$t + \textbf{G}(t, \textbf{x}) \, $d$\textbf{w}(t)$';
+        '$d x_i = F_i \left( t, \textbf{x} \right) \, dt + G_i \left( t, \textbf{x} \right) \, dN_i (t)$';
         '';
-        '$\textbf{F}(t, \textbf{x}) = \left[- \gamma \textbf{x} + (\textbf{x} - b_l) (b_u - \textbf{x}) \left( \textbf{K} \, f (\textbf{x}) + \textbf{g}(t) \right) \right]$';
+        '$F_i \left( t, \textbf{x} \right) = -A \, x_i + (B - x_i) \, (x_i - (-B)) \, \left[ \sum_{j = 1}^{n} f \left( x_j \right) w_{ij} + I_i (t) \right]$';
         '';
-        '$\textbf{g}(t) = I_{amp}(t) \, \textbf{s}$: external stimulus';
+        '$G_i \left( t, \textbf{x} \right) = \sigma$';
         '';
-        '$\textbf{G}(t, \textbf{x}) = \sigma \, \textbf{I}_{n \times n}$: $n$ independent Weiner processes all scaled with std. $\sigma$.';
+        '$N_i (t)$: noise as Weiner process';
         '';
-        '$\textbf{w}(t)$: $n$ independent Weiner processes';
     };
 
     % Display panels -- for GUI
@@ -71,18 +69,18 @@ function sys = LinearSDE(Kij)
       
 end
 
-function Stimulus(ax,t,sol,Kij,gamma,bu,bl,Iamp,tau,T,s,sigma)
+function Stimulus(ax,t,sol,W,A,B,Iamp,tau,T,s,sigma)
     % ax: current axis
     % t: current time step
     % sol: solution returned by the solver (ode45)
-    % Kij,gamma, ...: model parameters 
+    % Kij,A, ...: model parameters 
     % Reconstruct the stimulus used by odefun
     Iapp = zeros(size(s,1),size(sol.x,2));
     for idx = 1:numel(sol.x)
         [~,iapp] = sdeF( ...
             sol.x(idx), ...
             sol.y(:,idx), ...
-            Kij,gamma,bu,bl,Iamp,tau,T,s,sigma ...
+            W,A,B,Iamp,tau,T,s,sigma ...
             );
         Iapp(:, idx) = iapp;
     end
@@ -95,7 +93,7 @@ function Stimulus(ax,t,sol,Kij,gamma,bu,bl,Iamp,tau,T,s,sigma)
 end
 
 % deterministic part
-function [F, Iapp] = sdeF(t,Y,Kij,gamma,bu,bl,Iamp,tau,T,s,sigma)
+function [F, Iapp] = sdeF(t,Y,W,A,B,Iamp,tau,T,s,sigma)
     % extract incoming variables
     Y = reshape(Y,[],1);
     x = Y(:, 1);
@@ -108,21 +106,22 @@ function [F, Iapp] = sdeF(t,Y,Kij,gamma,bu,bl,Iamp,tau,T,s,sigma)
     end
 
     % neighbor nodes' influences
-    Inet = Kij * f(x);
+    Inet = W * f(x);
 
     % system of equations
-    dx = -gamma.*x + (x - bl).*(bu - x).*(Inet + Iapp);    
+    dx = -A.*x +  (B - x).*(Inet + Iapp);    
 
     % return
     F = [dx];
 end
 
 % stochastic part
-function [G] = sdeG(t,Y,Kij,gamma,bu,bl,Iamp,tau,T,s,sigma)
-    G = sigma .* eye(size(Kij,1));
+function [G] = sdeG(t,Y,W,A,B,Iamp,tau,T,s,sigma)
+    G = sigma .* eye(size(W,1));
 end
 
 % Sigmoid function
 function y=f(x)
-    y = 1./(1+exp(-x)) - 0.5;
+    %y = 1./(1+exp(-x)) - 0.5;
+    y = tanh(x);
 end

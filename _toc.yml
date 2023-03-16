@@ -36,3 +36,16 @@ parts:
           - file: nb/feb23/00-network-2clusters_random-model-linear
 
           - file: nb/feb23/01-network-2clusters_random-model-linear
+
+          - file: nb/feb23/02-network-power_law_deg_dist-model-linear_sde-desc-subj_by_run_FCs
+
+  - caption: March 2023
+    chapters:
+      - file: nb/mar23/mar23
+
+      - file: nb/mar23/mar23_updates
+        sections:
+
+          - file: nb/mar23/00-network-simple_networks-model-linear_EI_balance
+
+          - file: nb/mar23/01-network-modular-model-linear_EI_balance
