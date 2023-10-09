@@ -54,8 +54,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Sep 3, 2023: Emoprox2 dataset: ICA" href="00-data-emoprox2_desc-ica.html" />
-    <link rel="prev" title="Updates" href="sep23_updates.html" />
+    <link rel="next" title="Sep 3, 2023: mouse whole brain fMRI: ICA" href="01-data-mouse_desc-ica.html" />
+    <link rel="prev" title="Sep 10, 2023: pytorch lightning" href="01-desc-testing-pytorch-lightning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -402,7 +402,22 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="simple">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_fmri-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on fMRI data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/01-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -427,14 +442,59 @@
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-desc-testing-pytorch-lightning.html">
+     Sep 10, 2023: pytorch lightning
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Aug 30, 2023: mouse whole brain fMRI: correlation maps
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-ica.html">
+     Sep 3, 2023: mouse whole brain fMRI: ICA
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="00-data-emoprox2_desc-ica.html">
      Sep 3, 2023: Emoprox2 dataset: ICA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-emoprox2_desc-dmd.html">
+     Sep 4, 2023: Emoprox2 dataset: DMD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_roi.html">
+     Sep 14, 2023: mouse whole brain fMRI: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_voxel.html">
+     Sep 18, 2023: mouse whole brain fMRI, voxel level data: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_model-svinet_desc-communities.html">
+     Sep 25, 2023: mouse whole brain fMRI: svinet overlapping communities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-collect-files-runwise.html">
+     Sep 26, 2023: collect data files per sub, ses, run
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-functional-connectivity.html">
+     Sep 27, 2023: functional connectivity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-visualize-nws.html">
+     Sep 29, 2023; visualize overlapping networks
     </a>
    </li>
   </ul>
@@ -560,10 +620,17 @@
 <h1>Aug 30, 2023: mouse whole brain fMRI: correlation maps<a class="headerlink" href="#aug-30-2023-mouse-whole-brain-fmri-correlation-maps" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span> 
 <span class="kn">import</span> <span class="nn">pickle</span> 
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
 
 <span class="c1"># plotting</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -578,6 +645,10 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;errorbar.capsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <span class="kn">import</span> <span class="nn">cmasher</span> <span class="k">as</span> <span class="nn">cmr</span>  <span class="c1"># CITE ITS PAPER IN YOUR MANUSCRIPT</span>
+
+<span class="c1"># ignore user warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -594,10 +665,29 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1 - len(np.where(np.isnan(ts[0, :]))[0]) / ts.shape[1]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/home/govindas/mouse_dataset/data&quot;</span>
-<span class="n">data_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s2">/sub-SLC05_ses-1_run-7_task-rest_space-CCF3d_desc-rabies-hp_bold.npy&quot;</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="c1"># time x rois</span>
-<span class="n">display</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># time series of a session of a subject, concatenating runs</span>
+<span class="n">sub</span><span class="p">,</span> <span class="n">ses</span><span class="p">,</span> <span class="n">task</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;rest&#39;</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">f</span> 
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;SLC</span><span class="si">{</span><span class="n">sub</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">f</span> 
+    <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;ses-</span><span class="si">{</span><span class="n">ses</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">f</span> 
+    <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;task-</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">f</span>
+<span class="p">]</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">data_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">data_file</span> <span class="ow">in</span> <span class="n">data_files</span><span class="p">],</span> 
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="c1"># time x roi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="n">args</span><span class="o">.</span><span class="n">TR</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">args</span><span class="o">.</span><span class="n">TR</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">TR</span><span class="p">)</span>
@@ -606,57 +696,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(474, 6017)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1971, 6017)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(474,)
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>preprocessing steps ??</p></li>
-<li></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ts</span><span class="p">[:,</span> <span class="mi">1000</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/00-data-mouse_desc-correlation-maps_5_0.png" src="../../_images/00-data-mouse_desc-correlation-maps_5_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">args</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cmr</span><span class="o">.</span><span class="n">iceburn</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">)</span> <span class="c1">#, vmin=-1, vmax=1)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f16147b26a0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/00-data-mouse_desc-correlation-maps_6_1.png" src="../../_images/00-data-mouse_desc-correlation-maps_6_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(474, 6017)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1971,)
 </pre></div>
 </div>
 </div>
@@ -664,80 +707,68 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cmr</span><span class="o">.</span><span class="n">iceburn</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">)</span> <span class="c1">#, vmin=-1, vmax=1)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;roi&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f16146b15b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 14.79166666666666, &#39;roi&#39;), Text(48.541666666666664, 0.5, &#39;time&#39;)]
+</pre></div>
+</div>
+<img alt="../../_images/00-data-mouse_desc-correlation-maps_5_1.png" src="../../_images/00-data-mouse_desc-correlation-maps_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FC matrix, thresholded at top 10% density</span>
+<span class="n">args</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+<span class="n">R</span> <span class="o">*=</span> <span class="n">R</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
+<span class="n">args</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cmr</span><span class="o">.</span><span class="n">iceburn</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-mouse_desc-correlation-maps_6_1.png" src="../../_images/00-data-mouse_desc-correlation-maps_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roi_lookup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/home/govindas/mouse_dataset/roi_lookup.npy&#39;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">roi_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">roi_lookup</span><span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">roi_lookup</span><span class="p">[</span><span class="s1">&#39;ca2&#39;</span><span class="p">][</span><span class="mi">321</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">roi_idx</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;corr&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;roi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;corr&#39;), Text(0.5, 0, &#39;roi&#39;)]
 </pre></div>
 </div>
 <img alt="../../_images/00-data-mouse_desc-correlation-maps_8_1.png" src="../../_images/00-data-mouse_desc-correlation-maps_8_1.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   0,    3,  506,  509, 2920])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">ts</span><span class="p">[:,</span> <span class="mi">509</span><span class="p">],</span> <span class="n">ts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.56010909],
-       [0.56010909, 1.        ]])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([   9,   16,   30,   33,   41,   47,   56,   58,   60,   65,   76,
-          96,  104,  452,  458,  488,  494,  505,  507,  533,  543,  574,
-         591,  617,  626,  717,  870,  890,  906,  919,  937,  959,  966,
-         970,  976,  988,  990,  993,  995,  999, 1013, 1022, 1025, 1028,
-        1037, 1048, 1063, 1102, 1105, 1112, 1122, 1144, 1162, 1216, 1252,
-        1271, 1283, 1286, 1292, 1294, 1295, 1299, 1304, 1306, 1308, 1310,
-        1311, 1315, 1317, 1318, 1320, 1326, 1327, 1328, 1330, 1335, 1336,
-        1337, 1338, 1339, 1340, 1344, 1347, 1354, 1360, 1362, 1378, 1381,
-        1385, 1390, 1391, 1393, 1406, 1409, 1411, 1430, 1436, 1441, 1443,
-        1444, 1447, 1476, 1819, 1824, 1843, 1845, 1852, 1858, 1860, 1870,
-        1877, 1881, 1886, 1895, 1896, 1897, 1898, 1899, 1905, 1907, 1910,
-        2205, 2211, 2230, 2231, 2251, 2252, 2253, 2266, 2293, 2309, 2317,
-        2320, 2325, 2336, 2341, 2343, 2354, 2363, 2367, 2368, 2370, 2371,
-        2376, 2379, 2380, 2384, 2385, 2387, 2395, 2397, 2398, 2399, 2401,
-        2402, 2404, 2406, 2407, 2408, 2418, 2419, 2421, 2431, 2437, 2440,
-        2442, 2445, 2468, 2472, 2488, 2496, 2505, 2507, 2510, 2549, 2557,
-        2639, 2652, 2657, 2664, 2674, 2687, 2688, 2689, 2700, 2705, 2707,
-        2708, 2711, 2716, 2719, 2721, 2722, 2723, 2725, 2731, 2732, 2733,
-        2734, 2736, 2737, 2738, 2739, 2740, 2742, 2745, 2748, 2754, 2761,
-        2763, 2765, 2766, 2767, 2768, 2770, 2771, 2773, 2774, 2776, 2779,
-        2780, 2781, 2782, 2783, 2784, 2785, 2786, 2787, 2790, 2791, 2792,
-        2793, 2794, 2803, 2804, 2815, 2819, 2827, 2833, 2834, 2844, 2870,
-        3037, 3040, 3042, 3043, 3046, 3052, 3053, 3055, 3058, 3063, 3073,
-        3075, 3091, 3092, 3125, 4217, 4220, 4263, 4272, 4297, 4308, 5336]),)
-</pre></div>
-</div>
-</div>
-</div>
+<hr class="docutils" />
 </div>
 
     <script type="text/x-thebe-config">
@@ -765,17 +796,17 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="sep23_updates.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="01-desc-testing-pytorch-lightning.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Updates</p>
+            <p class="prev-next-title">Sep 10, 2023: pytorch lightning</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="00-data-emoprox2_desc-ica.html" title="next page">
+    <a class='right-next' id="next-link" href="01-data-mouse_desc-ica.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sep 3, 2023: Emoprox2 dataset: ICA</p>
+        <p class="prev-next-title">Sep 3, 2023: mouse whole brain fMRI: ICA</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

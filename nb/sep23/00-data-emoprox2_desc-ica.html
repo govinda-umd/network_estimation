@@ -54,8 +54,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="00-data-emoprox2_desc-dmd.html" />
-    <link rel="prev" title="Aug 30, 2023: mouse whole brain fMRI: correlation maps" href="00-data-mouse_desc-correlation-maps.html" />
+    <link rel="next" title="Sep 4, 2023: Emoprox2 dataset: DMD" href="00-data-emoprox2_desc-dmd.html" />
+    <link rel="prev" title="Sep 3, 2023: mouse whole brain fMRI: ICA" href="01-data-mouse_desc-ica.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -402,7 +402,22 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="simple">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_fmri-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on fMRI data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/01-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -428,13 +443,58 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="01-desc-testing-pytorch-lightning.html">
+     Sep 10, 2023: pytorch lightning
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="00-data-mouse_desc-correlation-maps.html">
      Aug 30, 2023: mouse whole brain fMRI: correlation maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-ica.html">
+     Sep 3, 2023: mouse whole brain fMRI: ICA
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Sep 3, 2023: Emoprox2 dataset: ICA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-emoprox2_desc-dmd.html">
+     Sep 4, 2023: Emoprox2 dataset: DMD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_roi.html">
+     Sep 14, 2023: mouse whole brain fMRI: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_voxel.html">
+     Sep 18, 2023: mouse whole brain fMRI, voxel level data: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_model-svinet_desc-communities.html">
+     Sep 25, 2023: mouse whole brain fMRI: svinet overlapping communities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-collect-files-runwise.html">
+     Sep 26, 2023: collect data files per sub, ses, run
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-functional-connectivity.html">
+     Sep 27, 2023: functional connectivity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-visualize-nws.html">
+     Sep 29, 2023; visualize overlapping networks
     </a>
    </li>
   </ul>
@@ -549,6 +609,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca">
+   pca
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#temporal-ica">
    temporal ica
   </a>
@@ -579,6 +644,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca">
+   pca
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#temporal-ica">
    temporal ica
   </a>
@@ -602,7 +672,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span> 
 <span class="kn">import</span> <span class="nn">pickle</span> 
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span><span class="p">,</span> <span class="n">PCA</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -942,13 +1012,77 @@
 source 5 follows proximity stimulus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmr</span><span class="o">.</span><span class="n">iceburn</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/00-data-emoprox2_desc-ica_10_0.png" src="../../_images/00-data-emoprox2_desc-ica_10_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_desc-ica_10_1.png" src="../../_images/00-data-emoprox2_desc-ica_10_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pca">
+<h2>pca<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">n_comps</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">X_</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 85) (145, 10)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(145, 85)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.61997789, 0.73954399, 0.80111766, 0.82523575, 0.84392391,
+       0.85797174, 0.86852079, 0.87686971, 0.88483034, 0.89219864])
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_desc-ica_13_1.png" src="../../_images/00-data-emoprox2_desc-ica_13_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmr</span><span class="o">.</span><span class="n">iceburn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_desc-ica_14_1.png" src="../../_images/00-data-emoprox2_desc-ica_14_1.png" />
 </div>
 </div>
 </div>
@@ -1015,7 +1149,7 @@ source 5 follows proximity stimulus.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/00-data-emoprox2_desc-ica_14_0.png" src="../../_images/00-data-emoprox2_desc-ica_14_0.png" />
+<img alt="../../_images/00-data-emoprox2_desc-ica_18_0.png" src="../../_images/00-data-emoprox2_desc-ica_18_0.png" />
 </div>
 </div>
 </div>
@@ -1046,17 +1180,17 @@ source 5 follows proximity stimulus.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="00-data-mouse_desc-correlation-maps.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="01-data-mouse_desc-ica.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Aug 30, 2023: mouse whole brain fMRI: correlation maps</p>
+            <p class="prev-next-title">Sep 3, 2023: mouse whole brain fMRI: ICA</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="00-data-emoprox2_desc-dmd.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Sep 4, 2023: Emoprox2 dataset: DMD</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

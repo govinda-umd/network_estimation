@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; Network Estimation from Time Series Data</title>
+    <title>Sep 4, 2023: Emoprox2 dataset: DMD &#8212; Network Estimation from Time Series Data</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,6 +54,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sep 14, 2023: mouse whole brain fMRI: led stimulus regression brain maps" href="00-data-mouse_desc-stim-regression_roi.html" />
     <link rel="prev" title="Sep 3, 2023: Emoprox2 dataset: ICA" href="00-data-emoprox2_desc-ica.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -401,7 +402,22 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="simple">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_fmri-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on fMRI data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/00-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../aug23/01-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -410,30 +426,75 @@
   September 2023
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="sep23.html">
    Summary
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="sep23_updates.html">
    Updates
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-desc-testing-pytorch-lightning.html">
+     Sep 10, 2023: pytorch lightning
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="00-data-mouse_desc-correlation-maps.html">
      Aug 30, 2023: mouse whole brain fMRI: correlation maps
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-ica.html">
+     Sep 3, 2023: mouse whole brain fMRI: ICA
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="00-data-emoprox2_desc-ica.html">
      Sep 3, 2023: Emoprox2 dataset: ICA
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sep 4, 2023: Emoprox2 dataset: DMD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_roi.html">
+     Sep 14, 2023: mouse whole brain fMRI: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-mouse_desc-stim-regression_voxel.html">
+     Sep 18, 2023: mouse whole brain fMRI, voxel level data: led stimulus regression brain maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_model-svinet_desc-communities.html">
+     Sep 25, 2023: mouse whole brain fMRI: svinet overlapping communities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-collect-files-runwise.html">
+     Sep 26, 2023: collect data files per sub, ses, run
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-functional-connectivity.html">
+     Sep 27, 2023: functional connectivity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-mouse_desc-visualize-nws.html">
+     Sep 29, 2023; visualize overlapping networks
     </a>
    </li>
   </ul>
@@ -515,19 +576,28 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/govinda-umd/network_estimation/master?urlpath=tree/docs/nb/sep23/00-data-emoprox2_desc-dmd.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -535,26 +605,58 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><no title></h1>
+                <h1>Sep 4, 2023: Emoprox2 dataset: DMD</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  
+  <div class="tex2jax_ignore mathjax_ignore section" id="sep-4-2023-emoprox2-dataset-dmd">
+<h1>Sep 4, 2023: Emoprox2 dataset: DMD<a class="headerlink" href="#sep-4-2023-emoprox2-dataset-dmd" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span> 
+<span class="kn">import</span> <span class="nn">pydmd</span>
+<span class="kn">import</span> <span class="nn">pickle</span> 
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+
+<span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">rainbow</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Arial&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;errorbar.capsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="kn">import</span> <span class="nn">cmasher</span> <span class="k">as</span> <span class="nn">cmr</span>  <span class="c1"># CITE ITS PAPER IN YOUR MANUSCRIPT</span>
+
+<span class="c1"># ignore user warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -586,6 +688,13 @@
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Sep 3, 2023: Emoprox2 dataset: ICA</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="00-data-mouse_desc-stim-regression_roi.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sep 14, 2023: mouse whole brain fMRI: led stimulus regression brain maps</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
