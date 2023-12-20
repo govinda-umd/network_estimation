@@ -1,11 +1,12 @@
 #!/bin/bash
 
 PARCELS=$1
-file=$2
-n=$3
-k=$4
+ROIS_folder=$2
+file=$3
+n=$4
+k=$5
 
-OUT_PATH=~/mouse_dataset/roi/svinet_folders/${PARCELS}/k"${k}"
+OUT_PATH=~/mouse_dataset/roi/${ROIS_folder}/svinet_folders/${PARCELS}/k"${k}"
 mkdir -p "${OUT_PATH}"
 
 svinet \

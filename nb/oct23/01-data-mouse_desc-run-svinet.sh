@@ -1,22 +1,30 @@
 #!/bin/bash
 
-PARCELS=$1 # "whole" <<<<====
-START_NUM_COMMS=$2
-END_NUM_COMMS=$3
+# COMMAND TO RUN?
+# bash 01-data-mouse_desc-run-svinet.sh \
+# whole \
+# yale_172 \
+# ~/mouse_dataset/n162_parcellations/172_roi_labels.txt \
+# 2 \
+# 10
 
+PARCELS=$1 #"whole" <<<<=======
+ROIS_folder=$2 # hadi_1445, yale_172 <<<<=======
 
-FILE_path=~/mouse_dataset/roi/func_nws_files/${PARCELS}
+FILE_path=~/mouse_dataset/roi/${ROIS_folder}/func_nws_files/${PARCELS}
 
-roi_labels=~/mouse_dataset/allen_atlas_ccfv3/hadi/parcellation/warped_on_n162/${PARCELS}_roi_labels.txt
+roi_labels=$3
 NUM_ROIS=$(python -c "import numpy as np; print(len(np.loadtxt('${roi_labels}')))")
 
+START_NUM_COMMS=$4
+END_NUM_COMMS=$5
 
 run_svinet() {
     for file in $(ls "${FILE_path}")
     do 
         echo "${file}"
         echo "----------"
-        bash 01-data-mouse_desc-svinet.sh "${PARCELS}" "${FILE_path}/${file}" "${NUM_ROIS}" "${NUM_COMMS}"
+        bash 01-data-mouse_desc-svinet.sh "${PARCELS}" "${ROIS_folder}" "${FILE_path}/${file}" "${NUM_ROIS}" "${NUM_COMMS}"
         echo "----------"
     done
 }
