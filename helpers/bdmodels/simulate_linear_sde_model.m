@@ -43,7 +43,9 @@ function [out_struct] = simulate_linear_sde_model(in_struct)
     
     
     % initial conditions
-    % sys.vardef(1).value = 0.0;
+    if isfield(in_struct, 'x_init')
+        sys.vardef = bdSetValue(sys.vardef, 'x', in_struct.x_init);
+    end
     
     % solver
     sol = bdSolve(sys, sys.tspan, sys.sdesolver{1});

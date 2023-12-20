@@ -1,0 +1,1502 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aug 8-9, 2023: trials on fitting SINDy on stimulus signal &#8212; Network Estimation from Time Series Data</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Aug 8-9, 2023: trials on fitting SINDy on stimulus signal" href="01-data-emoprox2_stim-model-SINDy.html" />
+    <link rel="prev" title="Aug 8-9, 2023: trials on fitting SINDy on fMRI data" href="00-data-emoprox2_fmri-model-SINDy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Network Estimation from Time Series Data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  December 2022
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dec22/dec22.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dec22/dec22_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dec22/00-desc-tvb_tutorial.html">
+     December 20, 2022: The Virtual Brain (TVB) tutorial
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  January 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jan23/jan23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../jan23/jan23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jan23/00-desc-create_network_dynamics.html">
+     January 18-20, 2023: The Virtual Brain (TVB): create network dynamics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jan23/01-model-linear.html">
+     January 30 - February 2, 2023: Simulating linear dynamics model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  February 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../feb23/feb23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../feb23/feb23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../feb23/00-network-2clusters_random-model-linear.html">
+     February 3-7, 2023: Create a 2-cluster network and random networks: Simulate dynamics with Linear neural dynamics model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../feb23/01-network-2clusters_random-model-linear.html">
+     February 15-16, 21, 2023: Brain Dynamics toolbox: Linear model: 2-clusters network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../feb23/02-network-power_law_deg_dist-model-linear_sde-desc-subj_by_run_FCs.html">
+     February 22-23, 2023: Linear stochastic model: power law degree distribution network: subjects x runs functional connectivity matrices
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  March 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mar23/mar23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mar23/mar23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mar23/00-network-simple_networks-model-linear_EI_balance.html">
+     March 6-9, 2023: Linear EI balance model: simple networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mar23/01-network-modular-model-linear_EI_balance.html">
+     March 9-20, 2023: Linear EI balance model: modular network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mar23/02-network-multiple_modular_nws-model-linear_EI_balance.html">
+     March 25-30, 2023: Linear EI balance model: modular networks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  April 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../apr23/apr23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../apr23/apr23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../apr23/00-network-multiple_modular_nws-model-vdPA.html">
+     April 6, 2023: van der Pol oscillators model (version A): modular networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../apr23/00-network-multiple_modular_nws-model-vdPB.html">
+     April 10, 2023: van der Pol oscillators model (version B): modular networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../apr23/01-network-modular_nw-model-kuramoto.html">
+     April 18-24, May 10,15-24, 2023: Kuramoto oscillators model: modular networks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  May 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../may23/may23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../may23/may23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/00-desc-network_inference-model-ARNI.html">
+     May 15-16, 2023: Model-free inference of directed networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/00-network-modular_nw-model-nonlinear_1D_sigmoid.html">
+     May 17-24, 2023: Nonlinear 1D sigmoid model: modular network:
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/00-network-modular_nw-model-nonlinear_1D-inference-ARNI.html">
+     May 17, 2023: Nonlinear 1D model: modular network: ARNI inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/00-network-modular_nw-model-R_Wong_Wang.html">
+     May 17-24, 2023: Reduced Wong Wang model: modular network:
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/01-network-modular_nw-model-kuramoto-desc-hrf_conv_ts.html">
+     April 18-24, May 10,15-24, 2023: Kuramoto oscillators model: modular networks: HRF convolved time series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/01-network-modular_nw-model-nonlinear_1D_sigmoid-desc-hrf_conv_ts.html">
+     May 17-24, 2023: Nonlinear 1D sigmoid model: modular network: HRF convoled time series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../may23/01-network-modular_nw-model-R_Wong_Wang-desc-hrf_conv_ts.html">
+     May 17-24, 2023: Reduced Wong Wang model: modular network: HRF convolved time series
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  July 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jul23/jul23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../jul23/jul23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jul23/00-SINDy_testing.html">
+     July 7-10, 2023: SINDy testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jul23/01-data-synthetic1D-model-SINDy.html">
+     July 10, 17-27, 2023: Synthetic dynamical systems, 1D: SINDy discovery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jul23/01-data-synthetic2D-model-SINDy.html">
+     July 17, 2023: Synthetic dynamical systems, 2D: SINDy discovery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jul23/02-data-emoprox2-model-SINDy.html">
+     July 27 - Aug 8 2023: Emoprox2 dataset: MAX ROIs: SINDy discovery
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  August 2023
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="aug23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="aug23_updates.html">
+   Updates
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-data-emoprox2_fmri-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on fMRI data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-data-emoprox2_stim-model-SINDy.html">
+     Aug 8-9, 2023: trials on fitting SINDy on stimulus signal
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  September 2023
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sep23/sep23.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../sep23/sep23_updates.html">
+   Updates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../sep23/00-data-mouse_desc-correlation-maps.html">
+     Aug 30, 2023: mouse whole brain fMRI: correlation maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../sep23/01-data-mouse_desc-ica.html">
+     Sep 3, 2023: mouse whole brain fMRI: ICA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../sep23/00-data-emoprox2_desc-ica.html">
+     Sep 3, 2023: Emoprox2 dataset: ICA
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/nb/aug23/00-data-emoprox2_stim-model-SINDy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/govinda-umd/network_estimation"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/govinda-umd/network_estimation/issues/new?title=Issue%20on%20page%20%2Fnb/aug23/00-data-emoprox2_stim-model-SINDy.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/govinda-umd/network_estimation/master?urlpath=tree/docs/nb/aug23/00-data-emoprox2_stim-model-SINDy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sindy-on-fmri-signal">
+   SINDy on fMRI signal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sindy-on-stimulus-signal">
+   SINDy on stimulus signal
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-delay-coordinates">
+     time-delay coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-ode">
+     2D ODE
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#typical-2d-system">
+       typical 2D system
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sindypi-formulation">
+       SINDyPI formulation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Aug 8-9, 2023: trials on fitting SINDy on stimulus signal</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sindy-on-fmri-signal">
+   SINDy on fMRI signal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sindy-on-stimulus-signal">
+   SINDy on stimulus signal
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-delay-coordinates">
+     time-delay coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-ode">
+     2D ODE
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#typical-2d-system">
+       typical 2D system
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sindypi-formulation">
+       SINDyPI formulation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="aug-8-9-2023-trials-on-fitting-sindy-on-stimulus-signal">
+<h1>Aug 8-9, 2023: trials on fitting SINDy on stimulus signal<a class="headerlink" href="#aug-8-9-2023-trials-on-fitting-sindy-on-stimulus-signal" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;&lt;script&gt;</span>
+<span class="s1">code_show=true; </span>
+<span class="s1">function code_toggle() {</span>
+<span class="s1"> if (code_show){</span>
+<span class="s1"> $(&#39;div.input&#39;).hide();</span>
+<span class="s1"> } else {</span>
+<span class="s1"> $(&#39;div.input&#39;).show();</span>
+<span class="s1"> }</span>
+<span class="s1"> code_show = !code_show</span>
+<span class="s1">} </span>
+<span class="s1">$( document ).ready(code_toggle);</span>
+<span class="s1">&lt;/script&gt;</span>
+<span class="s1">&lt;form action=&quot;javascript:code_toggle()&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;Click here to toggle on/off the raw code.&quot;&gt;&lt;/form&gt;&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script>
+code_show=true; 
+function code_toggle() {
+ if (code_show){
+ $('div.input').hide();
+ } else {
+ $('div.input').show();
+ }
+ code_show = !code_show
+} 
+$( document ).ready(code_toggle);
+</script>
+<form action="javascript:code_toggle()"><input type="submit" value="Click here to toggle on/off the raw code."></form></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#HIDE</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">pjoin</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pysindy</span> <span class="k">as</span> <span class="nn">ps</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">skl</span>
+<span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">cdist</span><span class="p">,</span> <span class="n">squareform</span><span class="p">,</span> <span class="n">cosine</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span><span class="p">,</span> <span class="n">integrate</span>
+<span class="kn">import</span> <span class="nn">tvb</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">matlab.engine</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># main dirs</span>
+<span class="n">proj_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;network_estimation&#39;</span><span class="p">)</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">rainbow</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Arial&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;errorbar.capsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="kn">import</span> <span class="nn">cmasher</span> <span class="k">as</span> <span class="nn">cmr</span>  <span class="c1"># CITE ITS PAPER IN YOUR MANUSCRIPT</span>
+
+<span class="c1"># ignore user warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+
+<span class="c1"># folders</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">proj_dir</span><span class="p">)</span>
+
+<span class="n">integrator_keywords</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">integrator_keywords</span><span class="p">[</span><span class="s1">&#39;rtol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-12</span>
+<span class="n">integrator_keywords</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;LSODA&#39;</span>
+<span class="n">integrator_keywords</span><span class="p">[</span><span class="s1">&#39;atol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Aug 09 01:18:27 PM: Encountered unexpected exception importing solver GLOP:
+RuntimeError(&#39;Unrecognized new version of ortools (9.6.2534). Expected &lt; 9.5.0.Please open a feature request on cvxpy to enable support for this version.&#39;)
+(CVXPY) Aug 09 01:18:27 PM: Encountered unexpected exception importing solver PDLP:
+RuntimeError(&#39;Unrecognized new version of ortools (9.6.2534). Expected &lt; 9.5.0.Please open a feature request on cvxpy to enable support for this version.&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ARGS</span><span class="p">():</span> <span class="k">pass</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">ARGS</span><span class="p">()</span>
+
+<span class="n">args</span><span class="o">.</span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">SEED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset">
+<h2>dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emoprox_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;emoprox_inventory_govinda/emoprox_extract_timeseries&#39;</span><span class="p">)</span>
+
+<span class="c1"># ROI atlas/parcellation</span>
+<span class="n">atlas_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emoprox_dir</span><span class="si">}</span><span class="s2">/masks/README_MAX_ROIs_final_gm_85.txt&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># display(atlas_df)</span>
+
+<span class="n">roi</span> <span class="o">=</span> <span class="s1">&#39;dorsal Insula&#39;</span>
+<span class="n">roi_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">atlas_df</span><span class="p">[</span><span class="s1">&#39;Hemi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">atlas_df</span><span class="p">[</span><span class="s1">&#39;ROI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">roi</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">atlas_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">roi_idx</span><span class="p">])</span>
+
+<span class="c1"># data</span>
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emoprox_dir</span><span class="si">}</span><span class="s2">/dataframes/MAX_ROIs.pkl&quot;</span><span class="p">)</span>
+
+<span class="c1"># for idx, row in data_df.iterrows():</span>
+    <span class="c1"># row[&#39;proximity&#39;] = row[&#39;proximity&#39;] * row[&#39;censor&#39;][:, 0]</span>
+    <span class="c1"># row[&#39;proximity_hrf&#39;] = row[&#39;proximity_hrf&#39;] * row[&#39;censor&#39;][:, 0]</span>
+    <span class="c1"># data_df.iloc[idx] = row</span>
+<span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">prox</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">prox</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;001&#39;</span><span class="p">][</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;timeseries&#39;</span><span class="p">][:,</span> <span class="n">roi_idx</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># derivatives $\dot{x}$</span>
+<span class="c1"># diff = ps.SINDyDerivative(kind=&quot;trend_filtered&quot;, order=0, alpha=1e-2)</span>
+<span class="n">xdiff</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SmoothedFiniteDifference</span><span class="p">()</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">xdiff</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">])</span>
+<span class="n">prox</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;proximity&#39;</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+<span class="c1"># basic plot check</span>
+<span class="n">plot_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span>
+    <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">wspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x(t)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kws</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">prox</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">time</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;dt = 1.25 seconds&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="c1">#, ylim=[-1.5, 1.5])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;time series x(t) and external input u(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x(t)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kws</span><span class="p">)</span>
+<span class="n">xdiff</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">()</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">xdiff</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\int{\dot</span><span class="si">{x}</span><span class="s1">}$ finite diff.&#39;</span><span class="p">)</span>
+<span class="n">xdiff</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDyDerivative</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;trend_filtered&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">xdiff</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\int{\dot</span><span class="si">{x}</span><span class="s1">}$ TVD&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="c1">#, ylim=[-1.5, 1.5])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;time series x(t), its derivatives $\dot</span><span class="si">{x}</span><span class="s1">$ and reconstructed time series $\int{\dot</span><span class="si">{x}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">prox</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u(t)&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kws</span><span class="p">)</span>
+<span class="n">udiff</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">()</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">prox</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">u_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">prox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">udiff</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">u_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\int{\dot</span><span class="si">{u}</span><span class="s1">}$ finite diff.&#39;</span><span class="p">)</span>
+<span class="n">udiff</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDyDerivative</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;trend_filtered&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">prox</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">u_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">prox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">udiff</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">u_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\int{\dot</span><span class="si">{u}</span><span class="s1">}$ TVD&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="c1">#, ylim=[-1.5, 1.5])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ext. input u(t), its derivatives $\dot</span><span class="si">{u}</span><span class="s1">$ and reconstructed stimulus $\int{\dot</span><span class="si">{u}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hemi</th>
+      <th>ROI</th>
+      <th>Index</th>
+      <th>Voxels</th>
+      <th>File_Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>49</th>
+      <td>R</td>
+      <td>ant. dorsal Insula</td>
+      <td>50</td>
+      <td>235</td>
+      <td>Hammers-gm-0.5-2mm-AntDorsal-INS-r.nii.gz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f691de33e50&gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_5_2.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_5_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sindy-on-fmri-signal">
+<h2>SINDy on fMRI signal<a class="headerlink" href="#sindy-on-fmri-signal" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SINDy</span> <span class="pre">model:</span></code></p>
+<div class="math notranslate nohighlight">
+\[ \dot{x} = f(x, u) \]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">(),</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;u0&#39;</span><span class="p">],</span>
+    <span class="n">discrete_time</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="s1">&#39; = -0.056 1 + 0.016 x + 0.151 u0 + -0.007 x^2 + 0.026 x u0 + 0.050 u0^2 + -0.007 x^3 + 0.007 x^2 u0 + -0.036 u0^3</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">discover_eqs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">u_train</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">u_test</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;threshold&#39;</span><span class="p">]),</span>
+        <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;poly_order&#39;</span><span class="p">],</span> <span class="n">include_bias</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">include_bias</span><span class="p">),</span>
+        <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">(),</span>
+        <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;u</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_delays</span><span class="p">)],</span>
+        <span class="n">discrete_time</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">discrete_time</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> 
+        <span class="n">t</span><span class="o">=</span><span class="n">t_train</span><span class="p">,</span> 
+        <span class="n">u</span><span class="o">=</span><span class="n">u_train</span><span class="p">,</span> 
+        <span class="n">multiple_trajectories</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">multiple_trajs</span><span class="p">,</span>
+        <span class="n">library_ensemble</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">lib_ensemble</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+    <span class="c1"># simulate</span>
+    <span class="k">if</span> <span class="o">~</span><span class="n">args</span><span class="o">.</span><span class="n">discrete_time</span><span class="p">:</span>
+        <span class="n">x_sim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+            <span class="n">x0</span><span class="o">=</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">t_test</span><span class="p">,</span>
+            <span class="n">u</span><span class="o">=</span><span class="n">u_test</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">x_dot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">x_test</span><span class="p">,</span> 
+            <span class="n">u</span><span class="o">=</span><span class="n">u_test</span><span class="p">,</span> 
+            <span class="n">multiple_trajectories</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">discrete_time</span><span class="p">:</span>
+        <span class="n">x_sim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+            <span class="n">x0</span><span class="o">=</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">t</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t_test</span><span class="p">),</span>
+            <span class="n">u</span><span class="o">=</span><span class="n">u_test</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">x_dot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">x_test</span><span class="p">,</span> 
+            <span class="n">u</span><span class="o">=</span><span class="n">u_test</span><span class="p">,</span> 
+            <span class="n">multiple_trajectories</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+    <span class="c1"># predicted vs empirical time series: </span>
+    <span class="c1"># 1.0 (perfect predictions) or 0.0 (imperfect predictions)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">skl</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">)</span>
+    <span class="c1"># print(f&quot;R2: {r2}&quot;)</span>
+
+    <span class="k">return</span> <span class="n">x_sim</span><span class="p">,</span> <span class="n">x_dot</span>
+
+<span class="k">def</span> <span class="nf">get_u</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+    <span class="n">u_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="o">.</span><span class="n">num_delays</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_delays</span><span class="p">):</span>
+        <span class="n">u_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u_</span>
+
+<span class="n">args</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">args</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">args</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">args</span><span class="o">.</span><span class="n">num_delays</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">args</span><span class="o">.</span><span class="n">multiple_trajs</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">args</span><span class="o">.</span><span class="n">lib_ensemble</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">args</span><span class="o">.</span><span class="n">include_bias</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">args</span><span class="o">.</span><span class="n">discrete_time</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">t_train</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">t_train</span><span class="p">)</span>
+<span class="n">u_train</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">t_train</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">t_train</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">x_train</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;timeseries&#39;</span><span class="p">][:,</span> <span class="n">roi_idx</span><span class="p">]</span>
+    <span class="n">u_train</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_u</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;proximity&#39;</span><span class="p">])</span>
+
+<span class="n">t_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;timeseries&#39;</span><span class="p">][:,</span> <span class="n">roi_idx</span><span class="p">]</span>
+<span class="n">u_test</span> <span class="o">=</span> <span class="n">get_u</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;proximity&#39;</span><span class="p">])</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;threshold&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;poly_order&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;n_freqs&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">x_sim</span><span class="p">,</span> <span class="n">x_dot</span> <span class="o">=</span> <span class="n">discover_eqs</span><span class="p">(</span>
+    <span class="n">args</span><span class="p">,</span> 
+    <span class="n">t_train</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">u_train</span><span class="p">,</span> 
+    <span class="n">t_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">u_test</span><span class="p">,</span> 
+    <span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">x_dif</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">()</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">t_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(x)&#39; = -0.056 1 + 0.016 x + 0.151 u0 + -0.007 x^2 + 0.026 x u0 + 0.050 u0^2 + -0.007 x^3 + 0.007 x^2 u0 + -0.036 u0^3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot check</span>
+<span class="n">plot_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span>
+    <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">wspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x_test&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kws</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x_sim&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">t_test</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="c1">#, ylim=[-1.5, 1.5])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;test time series and SINDy simulated time series&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_dif</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{x}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kws</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_dot</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{x}</span><span class="s1">$ SINDy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">t_test</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="c1">#, ylim=[-1.5, 1.5])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;test derivative and SINDy predicted derivative&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f691ccdb280&gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_9_1.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_9_1.png" />
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modeling</span> <span class="n">the</span> <span class="n">stimulus</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\dot{u} = f(u)\]</div>
+</div>
+<div class="section" id="sindy-on-stimulus-signal">
+<h2>SINDy on stimulus signal<a class="headerlink" href="#sindy-on-stimulus-signal" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;001&#39;</span><span class="p">][</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="time-delay-coordinates">
+<h3>time-delay coordinates<a class="headerlink" href="#time-delay-coordinates" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">time-delay</span> <span class="pre">coordinates</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span>
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">SINDyDerivative</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;finite_difference&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u0&#39;</span><span class="p">,</span> <span class="s1">&#39;u1&#39;</span><span class="p">],</span>
+    <span class="n">discrete_time</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="p">(</span><span class="n">u0</span><span class="p">)</span><span class="s1">&#39; = -0.011 u0 + -0.393 u1</span>
+<span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="s1">&#39; = 0.404 u0</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">args</span><span class="o">.</span><span class="n">num_coords</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#np.argmin(np.diff(S))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">1</span>
+    <span class="c1"># Hankel matrix</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">hankel</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">])[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))]</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="c1"># eigen timeseries </span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">Vh</span><span class="p">[:</span><span class="n">args</span><span class="o">.</span><span class="n">num_coords</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span>
+    <span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span>
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">SINDyDerivative</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;finite_difference&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u0&#39;</span><span class="p">,</span> <span class="s1">&#39;u1&#39;</span><span class="p">],</span>
+    <span class="n">discrete_time</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">t</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span>
+    <span class="n">multiple_trajectories</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">library_ensemble</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ensemble</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.25</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="mf">1.25</span><span class="p">)</span> <span class="c1"># len(x_test)</span>
+<span class="n">x_sim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+    <span class="n">x0</span><span class="o">=</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">t_test</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">x_rec</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">args</span><span class="o">.</span><span class="n">num_coords</span><span class="p">]</span> <span class="o">@</span>
+    <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">num_coords</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">num_coords</span><span class="p">))]</span> <span class="o">@</span>
+    <span class="n">x_sim</span><span class="o">.</span><span class="n">T</span>
+<span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;proximity&#39;</span><span class="p">][:</span><span class="nb">len</span><span class="p">(</span><span class="n">x_rec</span><span class="p">)],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_test(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_rec</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;test and simulated stimulus&#39;</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span>
+    <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$u_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim$_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim$_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim(t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(u0)&#39; = -0.011 u0 + -0.393 u1
+(u1)&#39; = 0.404 u0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f691cb49fd0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_15_2.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_15_2.png" />
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_15_3.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_15_3.png" />
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">issues</span><span class="p">:</span> 
+<span class="o">-</span> <span class="n">the</span> <span class="n">simulated</span> <span class="n">signals</span> <span class="n">decay</span> <span class="k">with</span> <span class="n">time</span><span class="o">.</span> 
+<span class="o">-</span> <span class="n">the</span> <span class="n">oscillations</span> <span class="n">also</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">match</span> <span class="n">those</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">test</span> <span class="n">signal</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>==technical question==:
+how do we map back the simulated signals from time-delay coordinates to the 1D space?
+we map the 1D time series `x_train` onto time-delay coordinates using SVD of Hankel matrix. 
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(U S V^* = H\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>and use columns of `V` as time-delay coords. we can map back from time-delay coords to 1D space the simulated signals for `x_train` by reverting the SVD process. 
+but how do we do so for another signal, say `x_test`? 
+</pre></div>
+</div>
+</div>
+<div class="section" id="d-ode">
+<h3>2D ODE<a class="headerlink" href="#d-ode" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="typical-2d-system">
+<h4>typical 2D system<a class="headerlink" href="#typical-2d-system" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="n">D</span> <span class="n">ODE</span><span class="o">.</span>
+<span class="n">maybe</span> <span class="mi">1</span><span class="n">D</span> <span class="n">dynamical</span> <span class="n">system</span> <span class="n">cannot</span> <span class="n">generate</span> <span class="n">oscillations</span> <span class="p">(</span><span class="n">observed</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">stimulus</span><span class="p">)</span><span class="o">.</span> 
+<span class="k">try</span> <span class="n">modeling</span> <span class="n">a</span> <span class="n">second</span> <span class="n">order</span> <span class="n">system</span><span class="o">.</span> 
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\frac{d}{dt} \begin{bmatrix} u \\ \dot{u} \end{bmatrix} = f \left( \begin{bmatrix} u \\ \dot{u} \end{bmatrix} \right) 
+\end{split}\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">normalize_columns</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">(),</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u0&#39;</span><span class="p">,</span> <span class="s1">&#39;u1&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">u0</span><span class="p">)</span><span class="s1">&#39; = 1.000 u1</span>
+<span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="s1">&#39; = 0.002 1 + -0.124 u0 + -0.002 u1 + 0.002 u0^2 + 0.015 u0 u1 + -0.037 u1^2</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">]</span>
+<span class="n">differentiation_method</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">()</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">differentiation_method</span><span class="o">.</span><span class="n">_differentiate</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x0_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">x1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="c1"># ax.plot(t, x0_, &#39;g-&#39;, label=&#39;$\int{\dot{u}}$&#39;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{u}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_train&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;$u0 = u$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;$u1 = \dot</span><span class="si">{u}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">STLSQ</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">normalize_columns</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">PolynomialLibrary</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">differentiation_method</span><span class="o">=</span><span class="n">ps</span><span class="o">.</span><span class="n">FiniteDifference</span><span class="p">(),</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u0&#39;</span><span class="p">,</span> <span class="s1">&#39;u1&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+<span class="n">x_sim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_train&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;$u0 = u$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;$u1 = \dot</span><span class="si">{u}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(u0)&#39; = 1.000 u1
+(u1)&#39; = 0.002 1 + -0.124 u0 + -0.002 u1 + 0.002 u0^2 + 0.015 u0 u1 + -0.037 u1^2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f691c941d30&gt;
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_20_2.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_20_2.png" />
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_20_3.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_20_3.png" />
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clearly</span> <span class="n">there</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">fit</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sindypi-formulation">
+<h4>SINDyPI formulation<a class="headerlink" href="#sindypi-formulation" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">library_functions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">,</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">*</span><span class="n">u</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">library</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">PDELibrary</span><span class="p">(</span>
+    <span class="n">library_functions</span><span class="o">=</span><span class="n">library_functions</span><span class="p">,</span>
+    <span class="n">temporal_grid</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+    <span class="n">function_names</span><span class="o">=</span><span class="n">library_function_names</span><span class="p">,</span>
+    <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">implicit_terms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">derivative_order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDyPI</span><span class="p">(</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">thresholder</span><span class="o">=</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span>
+    <span class="c1"># normalize_columns=True</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> 
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">library</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u_tt</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.003</span> <span class="mi">1</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.075</span> <span class="n">u</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.001</span> <span class="n">u</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.006</span> <span class="n">uu_t</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.001</span> <span class="n">u</span><span class="o">^</span><span class="mi">2</span><span class="n">u_t</span> <span class="o">+</span> <span class="mf">0.230</span> <span class="n">u</span><span class="o">^</span><span class="mi">2</span><span class="n">u_tt</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\implies\)</span>
+$<span class="math notranslate nohighlight">\( 
+\frac{d}{dt} \begin{bmatrix} u \\ \dot{u} \end{bmatrix} = 
+\begin{bmatrix} 
+\dot{u} \\  
+\frac{-0.075 u}{1 - 0.23 u^2}
+\end{bmatrix} 
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;proximity&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+<span class="c1"># custom library</span>
+<span class="n">library_functions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">,</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">*</span><span class="n">u</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">library_function_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">,</span>
+    <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">+</span><span class="s2">&quot;^2&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">library</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">PDELibrary</span><span class="p">(</span>
+    <span class="n">library_functions</span><span class="o">=</span><span class="n">library_functions</span><span class="p">,</span>
+    <span class="n">temporal_grid</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+    <span class="n">function_names</span><span class="o">=</span><span class="n">library_function_names</span><span class="p">,</span>
+    <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">implicit_terms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">derivative_order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">library</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># print(library.get_feature_names())</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDyPI</span><span class="p">(</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">thresholder</span><span class="o">=</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span>
+    <span class="c1"># normalize_columns=True</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">SINDy</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> 
+    <span class="n">feature_library</span><span class="o">=</span><span class="n">library</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">multiple_trajectories</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.075</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.23</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">x</span>
+
+
+<span class="n">x_sim</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">solve_ivp</span><span class="p">(</span>
+    <span class="n">fun</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="o">**</span><span class="n">integrator_keywords</span>
+<span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># ax.plot(x[0][:, 0], x[0][:, 1], c=&#39;orange&#39;, label=&#39;x_train&#39;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_sim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u_sim&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;$u$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;$\dot</span><span class="si">{u}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model  0
+Model  1
+Model  2
+Model  3
+Model  4
+Model  5
+Model  6
+Model  7
+Model  8
+1 = -0.031 u + 0.472 u^2 + 0.086 u_t + -0.163 u_tt + 0.006 uu_t + -0.008 u^2u_t + -0.320 uu_tt + -0.151 u^2u_tt
+u = -0.025 1 + -0.094 u^2 + -0.004 u_t + -2.992 u_tt + 0.153 uu_t + 0.014 u^2u_t + -0.942 uu_tt + -1.055 u^2u_tt
+u^2 = 0.409 1 + -0.127 u + -0.052 u_t + 0.008 u_tt + 0.155 u^2u_t + -4.431 uu_tt + -0.478 u^2u_tt
+u_t = 0.013 1 + -0.005 u^2 + 0.010 uu_t + 0.689 u^2u_t + -0.003 uu_tt
+u_tt = -0.003 1 + -0.075 u + -0.001 u^2 + 0.006 uu_t + -0.001 u^2u_t + 0.230 u^2u_tt
+uu_t = 0.031 u + -0.002 u^2 + 0.009 u_t + 0.059 u_tt + -0.088 u^2u_t + 0.064 u^2u_tt
+u^2u_t = -0.001 1 + 0.003 u + 0.020 u^2 + 0.614 u_t + -0.076 uu_t + 0.148 uu_tt + 0.018 u^2u_tt
+uu_tt = -0.008 1 + -0.034 u + -0.124 u^2 + 0.026 u^2u_t + -0.151 u^2u_tt
+u^2u_tt = -0.011 1 + -0.117 u + -0.039 u^2 + 1.024 u_tt + 0.027 uu_t + 0.014 u^2u_t + -0.468 uu_tt
+</pre></div>
+</div>
+<img alt="../../_images/00-data-emoprox2_stim-model-SINDy_24_1.png" src="../../_images/00-data-emoprox2_stim-model-SINDy_24_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nb/aug23"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="00-data-emoprox2_fmri-model-SINDy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Aug 8-9, 2023: trials on fitting SINDy on fMRI data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="01-data-emoprox2_stim-model-SINDy.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Aug 8-9, 2023: trials on fitting SINDy on stimulus signal</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Govinda Surampudi<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

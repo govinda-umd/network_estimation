@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # March 9, 2023: Linear EI balance model: modular network
+# # March 9-20, 2023: Linear EI balance model: modular network
 
 # In[1]:
 
@@ -216,7 +216,7 @@ def get_min_max(fc):
     return -max(vmin, vmax), max(vmin, vmax)
 
 def display_fcs(args, networks, fcs) -> None:
-    nrows, ncols = args.num_subjs, 1+args.num_runs
+    nrows, ncols = args.num_subjs, 1+args.num_sigmas
     figsize = (5*ncols, 4*nrows)
     fig, axs = plt.subplots(
         nrows=nrows, 
@@ -242,16 +242,19 @@ def display_fcs(args, networks, fcs) -> None:
         # ax.set_title(f"{args.networks[idx_subj].name}")
         set_matrix_ticks(args, ax)
 
-    for (idx_subj, idx_run) in tqdm(
-        list(product(range(args.num_subjs), range(args.num_runs)))
+    for (idx_subj, idx_sigma) in tqdm(
+        list(product(range(args.num_subjs), range(args.num_sigmas)))
     ):
-        ax = axs[idx_subj, idx_run+1] if nrows > 1 else axs[idx_run+1]
-        vmin, vmax = get_min_max(fcs[f"subj{idx_subj:02}"][f"run{idx_run:02}"])
-        im = ax.imshow(fcs[f"subj{idx_subj:02}"][f"run{idx_run:02}"], cmap=args.cmap, vmin=vmin, vmax=vmax)
+        ax = axs[idx_subj, idx_sigma+1] if nrows > 1 else axs[idx_sigma+1]
+        vmin, vmax = get_min_max(fcs[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"])
+        im = ax.imshow(
+            fcs[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"], 
+            cmap=args.cmap, vmin=vmin, vmax=vmax
+        )
         ax.figure.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 
         ax.set_ylabel(f"subj{idx_subj:02}",fontsize='large')
-        ax.set_title(f"sig. {args.sigmas[idx_run]:.1f}")
+        ax.set_title(f"sig. {args.sigmas[idx_sigma]:.1f}")
         set_matrix_ticks(args, ax)
 
     return None
@@ -265,9 +268,6 @@ args = ARGS()
 
 args.SEED = 100
 np.random.seed(args.SEED)
-
-# args.num_subjs = 2
-args.num_runs = 5
 
 args.SEEDS = [100, 50, 75]
 args.num_rois = np.array([5, 10, 5])
@@ -287,7 +287,8 @@ display_network(args, network)
 networks = [network]
 args.num_rois = args.num_rois.sum(axis=0)
 args.num_subjs = len(networks)
-args.num_runs = 5
+args.num_sigmas = 5
+args.num_runs = 50
 
 
 # In[6]:
@@ -313,7 +314,55 @@ def simulate(eng, model_path, model, in_dict):
 # In[7]:
 
 
-def plot_roi_time_series(args, time, data, roi_labels=None):
+def get_average_fcs(args, fcs):
+    fcs_avg = {
+        f"subj{idx_subj:02}": {
+            f"sigma{idx_sigma:02}": None
+            for idx_sigma in range(args.num_sigmas)
+        } 
+        for idx_subj in range(args.num_subjs)
+    }
+
+    fcs_std = copy.deepcopy(fcs_avg)
+
+    for (idx_subj, idx_sigma) in tqdm(
+        list(product(range(args.num_subjs), range(args.num_sigmas)))
+    ):
+        fcs_ = np.stack(
+            [
+                fcs[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"][f"run{idx_run:02}"] 
+                for idx_run in range(args.num_runs)
+            ],
+            axis=0,
+        )
+        fcs_avg[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"] = np.mean(fcs_, axis=0)
+        fcs_std[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"] = np.std(fcs_, axis=0)
+    
+    return fcs_avg, fcs_std
+        
+
+
+# In[8]:
+
+
+def plot_roi_time_series(args, out_dicts, roi_labels=None):
+    if any('run' in k for k in list(out_dicts.keys())):
+        times = np.stack(
+            [out_dicts[f"run{idx_run:02}"]['t'] for idx_run in range(args.num_runs)],
+            axis=0,
+        )
+        xs = np.stack(
+            [out_dicts[f"run{idx_run:02}"]['x'] for idx_run in range(args.num_runs)],
+            axis=0,
+        )
+        time = np.mean(times, axis=0)
+        data_mean = np.mean(xs, axis=0)
+        data_std = 1.00 * np.std(xs, axis=0) #/ np.sqrt(xs.shape[0])
+    elif any('x' in k for k in list(out_dicts.keys())):
+        time = out_dicts['t']
+        data_mean = out_dicts['x']
+        data_std = np.zeros_like(data_mean)        
+
     # plot the time series of all rois.
     # %matplotlib inline
     if args.subplot_layout == 'row-col':
@@ -337,7 +386,7 @@ def plot_roi_time_series(args, time, data, roi_labels=None):
         wspace=None, hspace=0.5
     )
 
-    for idx_roi, roi in enumerate(np.arange(data.shape[-1])):
+    for idx_roi, roi in enumerate(np.arange(data_mean.shape[-1])):
         if args.subplot_layout == 'row-col':
             ax = axs[idx_roi // ncols, idx_roi % ncols] if nrows > 1 else axs[idx_roi % ncols]
         elif args.subplot_layout == 'row':
@@ -350,14 +399,24 @@ def plot_roi_time_series(args, time, data, roi_labels=None):
 
         ax.plot(
             time,
-            data[:, idx_roi],
+            data_mean[:, idx_roi],
             color='cornflowerblue',
             linewidth=3,
         )
 
+        y1 = data_mean[:, idx_roi] - data_std[:, idx_roi]
+        y2 = data_mean[:, idx_roi] + data_std[:, idx_roi]
+        ax.fill_between(
+            x=time, 
+            y1=y1,
+            y2=y2,
+            color='cornflowerblue',
+            alpha=0.5,
+        )
+
         ax.plot(
             time,
-            np.zeros_like(data[:, idx_roi]),
+            np.zeros_like(data_mean[:, idx_roi]),
             color='black',
             linewidth=1.5,
             linestyle='-.',
@@ -374,21 +433,21 @@ def plot_roi_time_series(args, time, data, roi_labels=None):
     return None
 
 
-# In[8]:
+# In[9]:
 
 
 args.tspan = [0, 100]
 args.delta_t = 0.1
 
 
-# In[9]:
+# In[10]:
 
 
 args.sigmas = np.linspace(start=0.0, stop=1.0, num=10, endpoint=False)
 args.sigmas
 
 
-# In[10]:
+# In[11]:
 
 
 stim_rois = np.array([2, 8, 17]) - 1
@@ -415,13 +474,16 @@ in_dict['s'] = matlab.double(stimulus)
 # in_dict['sigma'] = 0.0
 
 
-# In[11]:
+# In[12]:
 
 
 in_dicts = {
     f"subj{idx_subj:02}": {
-        f"run{idx_run:02}": {}
-        for idx_run in range(args.num_runs)
+        f"sigma{idx_sigma:02}": {
+            f"run{idx_run:02}": {}
+            for idx_run in range(args.num_runs)
+        }
+        for idx_sigma in range(args.num_sigmas)
     } 
     for idx_subj in range(args.num_subjs)
 }
@@ -432,62 +494,74 @@ out_dicts = copy.deepcopy(in_dicts)
 eng = matlab.engine.start_matlab()
 model_path = f"{bdmodels_dir}"
 model = eng.simulate_linear_EI_balance_sde_model
-for (idx_subj, idx_run) in tqdm(
-    list(product(range(args.num_subjs), range(args.num_runs)))
+for (idx_subj, idx_sigma) in tqdm(
+    list(product(range(args.num_subjs), range(args.num_sigmas)))
 ):
-    in_dict['W'] = networks[idx_subj]
-    in_dict['sigma'] = args.sigmas[idx_run]
-    in_dicts[f"subj{idx_subj:02}"][f"run{idx_run:02}"] = copy.deepcopy(in_dict)
-    
-    out_dict = simulate(eng, model_path, model, in_dict)
+    for idx_run in tqdm(range(args.num_runs)):
+        in_dict['W'] = networks[idx_subj]
+        in_dict['sigma'] = args.sigmas[idx_sigma]
+        in_dict['randn'] = np.random.normal(
+            loc=0.0,
+            scale=1.0,
+            size=(args.num_rois, 100*(args.tspan[-1] - args.tspan[0]),),
+        )
+        in_dicts[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"][f"run{idx_run:02}"] = copy.deepcopy(in_dict)
+        
+        out_dict = simulate(eng, model_path, model, in_dict)
 
-    out_dicts[f"subj{idx_subj:02}"][f"run{idx_run:02}"] = copy.deepcopy(out_dict)
+        out_dicts[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"][f"run{idx_run:02}"] = copy.deepcopy(out_dict)
 eng.quit()
+
+
+# In[13]:
+
 
 # functional connectivity
 fcs = {
     f"subj{idx_subj:02}": {
-        f"run{idx_run:02}": None
-        for idx_run in range(args.num_runs)
+        f"sigma{idx_sigma:02}": {
+            f"run{idx_run:02}": None
+            for idx_run in range(args.num_runs)
+        }
+        for idx_sigma in range(args.num_sigmas)
     } 
     for idx_subj in range(args.num_subjs)
 }
-for (idx_subj, idx_run) in tqdm(
-    list(product(range(args.num_subjs), range(args.num_runs)))
+for (idx_subj, idx_sigma) in tqdm(
+    list(product(range(args.num_subjs), range(args.num_sigmas)))
 ):
-    out_dict = out_dicts[f"subj{idx_subj:02}"][f"run{idx_run:02}"]
-    fc = stats.spearmanr(out_dict['x']).statistic
-    np.fill_diagonal(fc, 0.0)
-    # fc = np.log(fc)
-    fcs[f"subj{idx_subj:02}"][f"run{idx_run:02}"] = fc
+    for idx_run in range(args.num_runs):
+        out_dict = out_dicts[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"][f"run{idx_run:02}"]
+        fc = stats.spearmanr(out_dict['x']).statistic
+        np.fill_diagonal(fc, 0.0)
+        # fc = np.log(fc)
+        fcs[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"][f"run{idx_run:02}"] = fc
 
+fcs_avg, fcs_std = get_average_fcs(args, fcs)
 args.cmap = mpl.colormaps['RdBu_r'] #cmr.iceburn # mpl.colormaps['Oranges']
-display_fcs(args, networks, fcs)
+display_fcs(args, networks, fcs_avg)
+display_fcs(args, networks, fcs_std)
 
 sp.io.savemat(
     f"{bdmodels_dir}/in_dicts_LinearEI.mat",
     in_dict,
 )
-# In[13]:
+# In[14]:
 
 
-out_dict = out_dicts[f"subj{0:02}"][f"run{1:02}"]
+idx_subj, idx_sigma = 0, 2
 args.subplot_layout = 'row-col'
 plot_roi_time_series(
     args, 
-    out_dict['t'],
-    out_dict['x'],
+    out_dicts[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"],#[f"run{8:02}"],
     roi_labels,
 )
 
-plt.figure()
-fc = stats.spearmanr(out_dict['x']).statistic
-np.fill_diagonal(fc,1e-3,)
-# fc = np.log(fc)
-args.cmap = mpl.colormaps['RdBu_r'] #cmr.iceburn # mpl.colormaps['Oranges']
-plt.imshow(
-    fc, 
-    cmap=args.cmap)
-plt.colorbar()
-plt.title('fc')
+# plt.figure()
+# args.cmap = mpl.colormaps['RdBu_r'] #cmr.iceburn # mpl.colormaps['Oranges']
+# plt.imshow(
+#     fcs_avg[f"subj{idx_subj:02}"][f"sigma{idx_sigma:02}"], 
+#     cmap=args.cmap)
+# plt.colorbar()
+# plt.title('fc')
 

@@ -37,7 +37,7 @@ function sys = LinearSDE(W)
     
     % time span
     sys.tspan = [0 20];
-    sys.tstep = 0.001;
+    sys.tstep = 0.1;
 
     % sde options
     sys.sdesolver = {@sdeEM, @sdeSH};
@@ -109,7 +109,8 @@ function [F, Iapp] = sdeF(t,Y,W,A,B,Iamp,tau,T,s,sigma)
     Inet = W * f(x);
 
     % system of equations
-    dx = -A.*x +  (B - x).*(Inet + Iapp);    
+    %dx = -A.*x +  (B - x).*(Inet + Iapp);    
+    dx = -A.*x + (Inet + Iapp);
 
     % return
     F = [dx];
@@ -123,5 +124,6 @@ end
 % Sigmoid function
 function y=f(x)
     %y = 1./(1+exp(-x)) - 0.5;
-    y = tanh(x);
+    %y = tanh(x);
+    y=x;
 end

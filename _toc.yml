@@ -49,3 +49,111 @@ parts:
           - file: nb/mar23/00-network-simple_networks-model-linear_EI_balance
 
           - file: nb/mar23/01-network-modular-model-linear_EI_balance
+
+          - file: nb/mar23/02-network-multiple_modular_nws-model-linear_EI_balance
+
+  - caption: April 2023
+    chapters:
+      - file: nb/apr23/apr23
+
+      - file: nb/apr23/apr23_updates
+        sections:
+
+          - file: nb/apr23/00-network-multiple_modular_nws-model-vdPA
+
+          - file: nb/apr23/00-network-multiple_modular_nws-model-vdPB
+
+          - file: nb/apr23/01-network-modular_nw-model-kuramoto
+
+  - caption: May 2023
+    chapters: 
+      - file: nb/may23/may23
+
+      - file: nb/may23/may23_updates
+        sections: 
+
+          - file: nb/may23/00-desc-network_inference-model-ARNI
+
+          - file: nb/may23/00-network-modular_nw-model-nonlinear_1D_sigmoid
+
+          - file: nb/may23/00-network-modular_nw-model-nonlinear_1D-inference-ARNI
+
+          - file: nb/may23/00-network-modular_nw-model-R_Wong_Wang
+
+          - file: nb/may23/01-network-modular_nw-model-kuramoto-desc-hrf_conv_ts
+
+          - file: nb/may23/01-network-modular_nw-model-nonlinear_1D_sigmoid-desc-hrf_conv_ts
+
+          - file: nb/may23/01-network-modular_nw-model-R_Wong_Wang-desc-hrf_conv_ts
+
+  - caption: July 2023
+    chapters: 
+      - file: nb/jul23/jul23
+
+      - file: nb/jul23/jul23_updates
+        sections: 
+
+          - file: nb/jul23/00-SINDy_testing
+
+          - file: nb/jul23/01-data-synthetic1D-model-SINDy
+
+          - file: nb/jul23/01-data-synthetic2D-model-SINDy
+
+          - file: nb/jul23/02-data-emoprox2-model-SINDy
+
+  - caption: August 2023
+    chapters: 
+      - file: nb/aug23/aug23
+
+      - file: nb/aug23/aug23_updates
+        sections: 
+
+          - file: nb/aug23/00-data-emoprox2_fmri-model-SINDy
+
+          - file: nb/aug23/00-data-emoprox2_stim-model-SINDy
+
+          - file: nb/aug23/01-data-emoprox2_stim-model-SINDy
+
+  - caption: September 2023
+    chapters: 
+      - file: nb/sep23/sep23
+
+      - file: nb/sep23/sep23_updates
+        sections: 
+
+          - file: nb/sep23/01-desc-testing-pytorch-lightning
+          
+          - file: nb/sep23/00-data-mouse_desc-correlation-maps
+
+          - file: nb/sep23/01-data-mouse_desc-ica
+
+          - file: nb/sep23/00-data-emoprox2_desc-ica
+
+          - file: nb/sep23/00-data-emoprox2_desc-dmd
+
+          - file: nb/sep23/00-data-mouse_desc-stim-regression_roi
+
+          - file: nb/sep23/00-data-mouse_desc-stim-regression_voxel
+
+          - file: nb/sep23/01-data-mouse_model-svinet_desc-communities
+
+          - file: nb/sep23/01-data-mouse_desc-collect-files-runwise
+
+          - file: nb/sep23/01-data-mouse_desc-functional-connectivity
+
+          - file: nb/sep23/01-data-mouse_desc-visualize-nws
+
+  - caption: October 2023
+    chapters:
+      - file: nb/oct23/oct23
+
+      - file: nb/oct23/oct23_updates
+        sections:
+
+          - file: nb/oct23/00-data-mouse_desc-register-allen-to-n162
+
+          - file: nb/oct23/01-data-mouse_desc-estimate-func-nw
+
+          - file: nb/oct23/02-data-mouse_desc-overlapping-comms
+
+          - file: nb/oct23/03-data-mouse_desc-check-roi-ts-extraction

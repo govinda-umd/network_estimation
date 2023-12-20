@@ -126,7 +126,7 @@ end
 
 % stochastic part
 function [G] = sdeG(t,Y,W,A,B,C,Iamp,tau,T,s,sigma)
-G = sigma .* eye(size(W, 1));
+    G = sigma .* eye(size(W, 1));
 end
 
 % Sigmoid function

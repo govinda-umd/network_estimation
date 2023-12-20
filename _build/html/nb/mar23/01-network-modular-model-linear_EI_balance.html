@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>March 9, 2023: Linear EI balance model: modular network &#8212; Network Estimation from Time Series Data</title>
+    <title>March 9-20, 2023: Linear EI balance model: modular network &#8212; Network Estimation from Time Series Data</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,6 +54,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="March 25-30, 2023: Linear EI balance model: modular networks" href="02-network-multiple_modular_nws-model-linear_EI_balance.html" />
     <link rel="prev" title="March 6-9, 2023: Linear EI balance model: simple networks" href="00-network-simple_networks-model-linear_EI_balance.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -228,7 +229,12 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     March 9, 2023: Linear EI balance model: modular network
+     March 9-20, 2023: Linear EI balance model: modular network
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-network-multiple_modular_nws-model-linear_EI_balance.html">
+     March 25-30, 2023: Linear EI balance model: modular networks
     </a>
    </li>
   </ul>
@@ -339,7 +345,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>March 9, 2023: Linear EI balance model: modular network</h1>
+                <h1>March 9-20, 2023: Linear EI balance model: modular network</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -350,8 +356,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="march-9-2023-linear-ei-balance-model-modular-network">
-<h1>March 9, 2023: Linear EI balance model: modular network<a class="headerlink" href="#march-9-2023-linear-ei-balance-model-modular-network" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="march-9-20-2023-linear-ei-balance-model-modular-network">
+<h1>March 9-20, 2023: Linear EI balance model: modular network<a class="headerlink" href="#march-9-20-2023-linear-ei-balance-model-modular-network" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
@@ -567,7 +573,7 @@
     <span class="k">return</span> <span class="o">-</span><span class="nb">max</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">display_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">networks</span><span class="p">,</span> <span class="n">fcs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span>
+    <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span>
     <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">ncols</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">nrows</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span> 
@@ -593,16 +599,19 @@
         <span class="c1"># ax.set_title(f&quot;{args.networks[idx_subj].name}&quot;)</span>
         <span class="n">set_matrix_ticks</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_run</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-        <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)))</span>
     <span class="p">):</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_run</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">nrows</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_run</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">get_min_max</span><span class="p">(</span><span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">nrows</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_sigma</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">get_min_max</span><span class="p">(</span><span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+            <span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span> 
+            <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span>
+        <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sig. </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">sigmas</span><span class="p">[</span><span class="n">idx_run</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sig. </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">sigmas</span><span class="p">[</span><span class="n">idx_sigma</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">set_matrix_ticks</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="kc">None</span>
@@ -617,9 +626,6 @@
 
 <span class="n">args</span><span class="o">.</span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">SEED</span><span class="p">)</span>
-
-<span class="c1"># args.num_subjs = 2</span>
-<span class="n">args</span><span class="o">.</span><span class="n">num_runs</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="n">args</span><span class="o">.</span><span class="n">SEEDS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">]</span>
 <span class="n">args</span><span class="o">.</span><span class="n">num_rois</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -639,7 +645,8 @@
 <span class="n">networks</span> <span class="o">=</span> <span class="p">[</span><span class="n">network</span><span class="p">]</span>
 <span class="n">args</span><span class="o">.</span><span class="n">num_rois</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">num_rois</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">networks</span><span class="p">)</span>
-<span class="n">args</span><span class="o">.</span><span class="n">num_runs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">args</span><span class="o">.</span><span class="n">num_runs</span> <span class="o">=</span> <span class="mi">50</span>
 </pre></div>
 </div>
 </div>
@@ -670,7 +677,56 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_roi_time_series</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">roi_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_average_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">fcs</span><span class="p">):</span>
+    <span class="n">fcs_avg</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">idx_sigma</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)</span>
+        <span class="p">}</span> 
+        <span class="k">for</span> <span class="n">idx_subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">fcs_std</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">fcs_avg</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)))</span>
+    <span class="p">):</span>
+        <span class="n">fcs_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> 
+                <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">fcs_avg</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fcs_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">fcs_std</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fcs_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fcs_avg</span><span class="p">,</span> <span class="n">fcs_std</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_roi_time_series</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">out_dicts</span><span class="p">,</span> <span class="n">roi_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="s1">&#39;run&#39;</span> <span class="ow">in</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">out_dicts</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">data_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">data_std</span> <span class="o">=</span> <span class="mf">1.00</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#/ np.sqrt(xs.shape[0])</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="s1">&#39;x&#39;</span> <span class="ow">in</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">out_dicts</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">out_dicts</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+        <span class="n">data_mean</span> <span class="o">=</span> <span class="n">out_dicts</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+        <span class="n">data_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">data_mean</span><span class="p">)</span>        
+
     <span class="c1"># plot the time series of all rois.</span>
     <span class="c1"># %matplotlib inline</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">subplot_layout</span> <span class="o">==</span> <span class="s1">&#39;row-col&#39;</span><span class="p">:</span>
@@ -694,7 +750,7 @@
         <span class="n">wspace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span>
     <span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">idx_roi</span><span class="p">,</span> <span class="n">roi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])):</span>
+    <span class="k">for</span> <span class="n">idx_roi</span><span class="p">,</span> <span class="n">roi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])):</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">subplot_layout</span> <span class="o">==</span> <span class="s1">&#39;row-col&#39;</span><span class="p">:</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_roi</span> <span class="o">//</span> <span class="n">ncols</span><span class="p">,</span> <span class="n">idx_roi</span> <span class="o">%</span> <span class="n">ncols</span><span class="p">]</span> <span class="k">if</span> <span class="n">nrows</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">axs</span><span class="p">[</span><span class="n">idx_roi</span> <span class="o">%</span> <span class="n">ncols</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">subplot_layout</span> <span class="o">==</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>
@@ -707,14 +763,24 @@
 
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
             <span class="n">time</span><span class="p">,</span>
-            <span class="n">data</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">],</span>
+            <span class="n">data_mean</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">],</span>
             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
             <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="p">)</span>
 
+        <span class="n">y1</span> <span class="o">=</span> <span class="n">data_mean</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_std</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">data_mean</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]</span> <span class="o">+</span> <span class="n">data_std</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> 
+            <span class="n">y1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cornflowerblue&#39;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="p">)</span>
+
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
             <span class="n">time</span><span class="p">,</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">data_mean</span><span class="p">[:,</span> <span class="n">idx_roi</span><span class="p">]),</span>
             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
             <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
             <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
@@ -786,8 +852,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">in_dicts</span> <span class="o">=</span> <span class="p">{</span>
     <span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)</span>
+        <span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">idx_sigma</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)</span>
     <span class="p">}</span> 
     <span class="k">for</span> <span class="n">idx_subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">)</span>
 <span class="p">}</span>
@@ -798,79 +867,100 @@
 <span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
 <span class="n">model_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bdmodels_dir</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">simulate_linear_EI_balance_sde_model</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_run</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-    <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+    <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)))</span>
 <span class="p">):</span>
-    <span class="n">in_dict</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">networks</span><span class="p">[</span><span class="n">idx_subj</span><span class="p">]</span>
-    <span class="n">in_dict</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">sigmas</span><span class="p">[</span><span class="n">idx_run</span><span class="p">]</span>
-    <span class="n">in_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">in_dict</span><span class="p">)</span>
-    
-    <span class="n">out_dict</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">eng</span><span class="p">,</span> <span class="n">model_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">in_dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)):</span>
+        <span class="n">in_dict</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">networks</span><span class="p">[</span><span class="n">idx_subj</span><span class="p">]</span>
+        <span class="n">in_dict</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">sigmas</span><span class="p">[</span><span class="n">idx_sigma</span><span class="p">]</span>
+        <span class="n">in_dict</span><span class="p">[</span><span class="s1">&#39;randn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_rois</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">tspan</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">args</span><span class="o">.</span><span class="n">tspan</span><span class="p">[</span><span class="mi">0</span><span class="p">]),),</span>
+        <span class="p">)</span>
+        <span class="n">in_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">in_dict</span><span class="p">)</span>
+        
+        <span class="n">out_dict</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">eng</span><span class="p">,</span> <span class="n">model_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">in_dict</span><span class="p">)</span>
 
-    <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">out_dict</span><span class="p">)</span>
+        <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">out_dict</span><span class="p">)</span>
 <span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-
-<span class="c1"># functional connectivity</span>
-<span class="n">fcs</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)</span>
-    <span class="p">}</span> 
-    <span class="k">for</span> <span class="n">idx_subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_run</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-    <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)))</span>
-<span class="p">):</span>
-    <span class="n">out_dict</span> <span class="o">=</span> <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-    <span class="n">fc</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">statistic</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="c1"># fc = np.log(fc)</span>
-    <span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fc</span>
-
-<span class="n">args</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">]</span> <span class="c1">#cmr.iceburn # mpl.colormaps[&#39;Oranges&#39;]</span>
-<span class="n">display_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">networks</span><span class="p">,</span> <span class="n">fcs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:10&lt;00:00,  2.05s/it]
-100%|██████████| 5/5 [00:00&lt;00:00, 161.31it/s]
-100%|██████████| 5/5 [00:00&lt;00:00, 24.06it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 50/50 [00:24&lt;00:00,  2.00it/s]
+100%|██████████| 50/50 [00:24&lt;00:00,  2.06it/s]
+100%|██████████| 50/50 [00:24&lt;00:00,  2.07it/s]
+100%|██████████| 50/50 [00:24&lt;00:00,  2.08it/s]
+100%|██████████| 50/50 [00:24&lt;00:00,  2.08it/s]
+100%|██████████| 5/5 [02:01&lt;00:00, 24.32s/it]
 </pre></div>
 </div>
-<img alt="../../_images/01-network-modular-model-linear_EI_balance_11_1.png" src="../../_images/01-network-modular-model-linear_EI_balance_11_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_dict</span> <span class="o">=</span> <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="mi">0</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-<span class="n">args</span><span class="o">.</span><span class="n">subplot_layout</span> <span class="o">=</span> <span class="s1">&#39;row-col&#39;</span>
-<span class="n">plot_roi_time_series</span><span class="p">(</span>
-    <span class="n">args</span><span class="p">,</span> 
-    <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span>
-    <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
-    <span class="n">roi_labels</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># functional connectivity</span>
+<span class="n">fcs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">idx_sigma</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)</span>
+    <span class="p">}</span> 
+    <span class="k">for</span> <span class="n">idx_subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+    <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_subjs</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_sigmas</span><span class="p">)))</span>
+<span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx_run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num_runs</span><span class="p">):</span>
+        <span class="n">out_dict</span> <span class="o">=</span> <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">fc</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">statistic</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># fc = np.log(fc)</span>
+        <span class="n">fcs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;run</span><span class="si">{</span><span class="n">idx_run</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fc</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fc</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">statistic</span>
-<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">,)</span>
-<span class="c1"># fc = np.log(fc)</span>
+<span class="n">fcs_avg</span><span class="p">,</span> <span class="n">fcs_std</span> <span class="o">=</span> <span class="n">get_average_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">fcs</span><span class="p">)</span>
 <span class="n">args</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">]</span> <span class="c1">#cmr.iceburn # mpl.colormaps[&#39;Oranges&#39;]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
-    <span class="n">fc</span><span class="p">,</span> 
-    <span class="n">cmap</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">cmap</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;fc&#39;</span><span class="p">)</span>
+<span class="n">display_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">networks</span><span class="p">,</span> <span class="n">fcs_avg</span><span class="p">)</span>
+<span class="n">display_fcs</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">networks</span><span class="p">,</span> <span class="n">fcs_std</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;fc&#39;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:00&lt;00:00,  6.94it/s]
+100%|██████████| 5/5 [00:00&lt;00:00, 4705.30it/s]
+100%|██████████| 5/5 [00:00&lt;00:00, 62.04it/s]
+100%|██████████| 5/5 [00:00&lt;00:00, 50.77it/s]
 </pre></div>
 </div>
 <img alt="../../_images/01-network-modular-model-linear_EI_balance_13_1.png" src="../../_images/01-network-modular-model-linear_EI_balance_13_1.png" />
 <img alt="../../_images/01-network-modular-model-linear_EI_balance_13_2.png" src="../../_images/01-network-modular-model-linear_EI_balance_13_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_subj</span><span class="p">,</span> <span class="n">idx_sigma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">args</span><span class="o">.</span><span class="n">subplot_layout</span> <span class="o">=</span> <span class="s1">&#39;row-col&#39;</span>
+<span class="n">plot_roi_time_series</span><span class="p">(</span>
+    <span class="n">args</span><span class="p">,</span> 
+    <span class="n">out_dicts</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;subj</span><span class="si">{</span><span class="n">idx_subj</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;sigma</span><span class="si">{</span><span class="n">idx_sigma</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span><span class="c1">#[f&quot;run{8:02}&quot;],</span>
+    <span class="n">roi_labels</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># plt.figure()</span>
+<span class="c1"># args.cmap = mpl.colormaps[&#39;RdBu_r&#39;] #cmr.iceburn # mpl.colormaps[&#39;Oranges&#39;]</span>
+<span class="c1"># plt.imshow(</span>
+<span class="c1">#     fcs_avg[f&quot;subj{idx_subj:02}&quot;][f&quot;sigma{idx_sigma:02}&quot;], </span>
+<span class="c1">#     cmap=args.cmap)</span>
+<span class="c1"># plt.colorbar()</span>
+<span class="c1"># plt.title(&#39;fc&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/01-network-modular-model-linear_EI_balance_15_0.png" src="../../_images/01-network-modular-model-linear_EI_balance_15_0.png" />
 </div>
 </div>
 </div>
@@ -906,6 +996,13 @@
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">March 6-9, 2023: Linear EI balance model: simple networks</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="02-network-multiple_modular_nws-model-linear_EI_balance.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">March 25-30, 2023: Linear EI balance model: modular networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
