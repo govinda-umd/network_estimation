@@ -6,10 +6,11 @@
 # yale_172 \
 # ~/mouse_dataset/n162_parcellations/172_roi_labels.txt \
 # 2 \
-# 10
+# 10 \
+# 25
 
 PARCELS=$1 #"whole" <<<<=======
-ROIS_folder=$2 # hadi_1445, yale_172 <<<<=======
+ROIS_folder=$2 # hadi_1445, yale_172, yale_56 <<<<=======
 
 FILE_path=~/mouse_dataset/roi/${ROIS_folder}/func_nws_files/${PARCELS}
 
@@ -19,13 +20,23 @@ NUM_ROIS=$(python -c "import numpy as np; print(len(np.loadtxt('${roi_labels}'))
 START_NUM_COMMS=$4
 END_NUM_COMMS=$5
 
+MAX_SEEDS=$6
+
 run_svinet() {
     for file in $(ls "${FILE_path}")
     do 
         echo "${file}"
         echo "----------"
-        bash 01-data-mouse_desc-svinet.sh "${PARCELS}" "${ROIS_folder}" "${FILE_path}/${file}" "${NUM_ROIS}" "${NUM_COMMS}"
-        echo "----------"
+        for seed in $(seq 1 ${MAX_SEEDS})
+        do
+            echo "${seed}"
+            bash 01-data-mouse_desc-svinet.sh \
+            "${PARCELS}" "${ROIS_folder}" \
+            "${FILE_path}/${file}" \
+            "${NUM_ROIS}" "${NUM_COMMS}" \
+            "${seed}"
+            echo "----------"
+        done
     done
 }
 

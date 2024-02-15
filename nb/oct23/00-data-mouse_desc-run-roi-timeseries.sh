@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# COMMAND TO RUN?
+# bash 00-data-mouse_desc-run-roi-timeseries.sh \
+# whole \
+# ~/mouse_dataset/n162_parcellations/56_parcels_RAS_cm.nii.gz \
+# yale_56
+
 FILE_path=~/mouse_dataset/voxel/all_file_collections
-PARCELs=$1 #"whole" <<<<=======
+PARCELs=$1 #"whole" #"iso" #"sub" <<<<=======
 ROIS=$2 #<<<<=======
 ROIS_folder=$3 #<<<<=======
 # "~/mouse_dataset/n162_parcellations/172_parcels_RAS_cm.nii.gz"
