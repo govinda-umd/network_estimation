@@ -1,21 +1,22 @@
 #!/bin/bash
 
 # roi description
-NUM_ROIS=$1
+TYPE=$1
 ROI_SIZE=$2
 SYMM=$3
 BRAIN_DIV=$4
+NUM_ROIS=$5
 
-DESC=type-functional_nrois-"${NUM_ROIS}"_size-"${ROI_SIZE}"_symm-"${SYMM}"_braindiv-"${BRAIN_DIV}"
+DESC=type-"${TYPE}"_size-"${ROI_SIZE}"_symm-"${SYMM}"_braindiv-"${BRAIN_DIV}"_nrois-"${NUM_ROIS}"
 FC_FOLDER=~/mouse_dataset/roi/"${DESC}"/func_nws
 SVINET_FOLDER=~/mouse_dataset/roi/"${DESC}"/svinets
 mkdir -p "${SVINET_FOLDER}"
 
-START_NUM_COMMS=$5
-END_NUM_COMMS=$6
+START_NUM_COMMS=$6
+END_NUM_COMMS=$7
 
-START_SEED=$7
-END_SEED=$8
+START_SEED=$8
+END_SEED=$9
 
 run_svinet(){
     for file in $(ls "${FC_FOLDER}")
@@ -29,6 +30,7 @@ run_svinet(){
             "${NUM_ROIS}" "${NUM_COMMS}" "${seed}"
             echo "---------"
         done
+        echo "---------"
     done
 }
 

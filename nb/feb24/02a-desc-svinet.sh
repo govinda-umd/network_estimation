@@ -15,11 +15,12 @@ seed=$5
 
 SSR_FOLDER=$(python -c "print('_'.join('${FILE}'.split('/')[-1].split('_')[:-1]))")
 OUT_PATH="${SVINET_FOLDER}/k-${k}"
-mkdir -p "${OUT_PATH}"/"${SSR_FOLDER}"
+SSR_PATH="${OUT_PATH}"/"${SSR_FOLDER}"
+mkdir -p "${SSR_PATH}"
 # ssr_folder: (sub, ses, run)_folder
 
 main_dir=$(pwd)
-cd "${OUT_PATH}/${SSR_FOLDER}"
+cd "${SSR_PATH}"
 
 svinet \
 -file "${FILE}" \
@@ -28,10 +29,12 @@ svinet \
 -seed "${seed}"
 
 seed_folder=n"${n}"-k"${k}"-mmsb-seed"${seed}"-linksampling
-echo "${OUT_PATH}/${SSR_FOLDER}/seed-$(leading_zero_fill 3 ${seed})"
+SSRS_PATH="${SSR_PATH}/seed-$(leading_zero_fill 3 ${seed})"
+echo "${SSRS_PATH}"
 
-mv "${OUT_PATH}/${SSR_FOLDER}/seed-$(leading_zero_fill 3 ${seed})" tmp
-mv "${seed_folder}" "${OUT_PATH}/${SSR_FOLDER}/seed-$(leading_zero_fill 3 ${seed})"
+mv "${SSRS_PATH}" tmp
+mv "${seed_folder}" "${SSRS_PATH}"
 rm -rf tmp
+# bcs, directly moving seed_folder to SSRS_PATH was not working
 
 cd "${main_dir}"

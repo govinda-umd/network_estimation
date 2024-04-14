@@ -5,13 +5,14 @@
 FILE_path=~/mouse_dataset/voxel/all_file_collections
 
 # roi description
-NUM_ROIS=$1
+TYPE=$1
 ROI_SIZE=$2
 SYMM=$3
 BRAIN_DIV=$4
+NUM_ROIS=$5
 
-DESC=type-functional_nrois-"${NUM_ROIS}"_size-"${ROI_SIZE}"_symm-"${SYMM}"_braindiv-"${BRAIN_DIV}"
-PARCELS=~/mouse_dataset/allen_atlas_ccfv3/MouseConnectivity/parcels/"${DESC}"_desc-parcels.nii.gz
+DESC=type-"${TYPE}"_size-"${ROI_SIZE}"_symm-"${SYMM}"_braindiv-"${BRAIN_DIV}"_nrois-"${NUM_ROIS}"
+PARCELS=~/mouse_dataset/parcels/"${DESC}"_desc-parcels.nii.gz
 
 TS_FOLDER=~/mouse_dataset/roi/"${DESC}"/roi_timeseries
 mkdir -p "${TS_FOLDER}"
