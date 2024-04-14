@@ -184,7 +184,7 @@ def setup_args():
     args.graph_file = sys.argv[2] # file of graph
     args.sbm = sys.argv[3] # p d o h
     args.dc = sys.argv[4] == '1' # degree corrected?
-    args.B_max = int(sys.argv[5]) # 20: constrain heuristic alg. with max number of blocks
+    args.wait = int(sys.argv[5]) # 1000
     args.SEED = int(sys.argv[6]) # random seed
     
     return args
@@ -197,7 +197,7 @@ def main():
         # args.DESC,
         args.graph_file, 
         args.sbm, args.dc, 
-        args.B_max, args.SEED
+        args.wait, args.SEED
     )
     
     if args.sbm == 'p' and args.dc == False:
@@ -215,7 +215,6 @@ def main():
     
     g = gt.load_graph(args.graph_file)
     
-    args.wait = 1000
     args.force_niter = 10000
     args.niter = 10
     
@@ -229,8 +228,8 @@ def main():
         dict(deg_corr=args.dc), dict(deg_corr=args.dc),
     ]
     state_df.loc['mcmc_args'] = [
-        dict(), dict(B_max=args.B_max), 
-        dict(B_max=args.B_max), dict(),
+        dict(), dict(), 
+        dict(), dict(),
     ]
     state, state_args, mcmc_args = state_df[args.sbm]
     

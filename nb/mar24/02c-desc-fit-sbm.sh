@@ -15,7 +15,7 @@ DESC=type-"${TYPE}"_size-"${ROI_SIZE}"_symm-"${SYMM}"_braindiv-"${BRAIN_DIV}"_nr
 # sbm descriptors
 SBMs=$6
 DCs=$7
-B_max=${8}
+WAIT=${8}
 SEED=${9}
 
 # num jobs in parallel
@@ -29,4 +29,4 @@ python 02c-desc-fit-sbm.py \
 ::: ${DESC} \
 ::: `cat ${ALL_GRAPHS}` \
 ::: ${SBMs} ::: ${DCs} \
-::: ${B_max} ::: ${SEED}
+::: ${WAIT} ::: ${SEED}
