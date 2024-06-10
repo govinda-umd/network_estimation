@@ -1,0 +1,7 @@
+==========================
+==========================
+Thu Apr 25 13:32:27 EDT 2024
+--------------------------
+slurmstepd: error: *** JOB 5932714 ON compute-b5-57 CANCELLED AT 2024-04-25T15:31:26 DUE TO TIME LIMIT ***
+/var/spool/slurmd/job6004753/slurm_script: line 49: 3934571 Killed                  python 02c-desc-fit-sbm.py ${DESC} ${UNIT} ${DENST} ${idx} ${SBM} ${DC} ${WAIT} ${MCMC_LEN} ${SEED}
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=6004753.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

@@ -1,0 +1,6 @@
+==========================
+==========================
+Thu Apr 25 13:32:26 EDT 2024
+--------------------------
+slurmstepd: error: *** JOB 5933656 ON compute-a8-13 CANCELLED AT 2024-04-25T16:49:34 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 6004759 ON compute-b8-37 CANCELLED AT 2024-04-26T13:32:43 DUE TO TIME LIMIT ***

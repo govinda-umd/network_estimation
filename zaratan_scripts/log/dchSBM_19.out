@@ -1,0 +1,26 @@
+==========================
+==========================
+Tue May 21 23:49:18 EDT 2024
+--------------------------
+type-spatial_size-225_symm-True_braindiv-whl_nrois-162 seswise 10 19 h True 12000 100000 100
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-10/corr_mats/sub-SLC07_ses-2_desc-corr-mat.gt.gz
+h SBM
+heuristic
+mcmc
+13 modes present
+14 blocks
+13 blocks
+17 blocks
+13 blocks
+16 blocks
+17 blocks
+15 blocks
+21 blocks
+21 blocks
+17 blocks
+16 blocks
+20 blocks
+16 blocks
+mode clusters
+evidence
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-10/sbms/sub-SLC07_ses-2/sbm-dc-h_desc-fit.npy

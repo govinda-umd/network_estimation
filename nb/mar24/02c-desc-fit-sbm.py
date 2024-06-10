@@ -200,7 +200,7 @@ def main():
         args.wait, args.SEED
     )
     
-    if args.sbm == 'p' and args.dc == False:
+    if args.sbm == 'a' and args.dc == False:
         return None
     
     fs = args.graph_file.split('/')
@@ -215,7 +215,7 @@ def main():
     
     g = gt.load_graph(args.graph_file)
     
-    args.force_niter = 10000
+    args.force_niter = 100000
     args.niter = 10
     
     state_df = pd.DataFrame(columns=['a', 'd', 'o', 'h'],)
@@ -269,7 +269,7 @@ def main():
             [   
                 g, L,
                 pmode, modes, marginals, 
-                state, bs, Bs, Bes, dls
+                state, Bes,
             ], 
             f
         )

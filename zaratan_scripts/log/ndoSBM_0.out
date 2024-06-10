@@ -1,0 +1,10 @@
+type-spatial_size-225_symm-True_braindiv-whl_nrois-162 seswise 10 0 o False 12000 100000 100
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-10/corr_mats/sub-SLC01_ses-1_desc-corr-mat.gt.gz
+o SBM
+heuristic
+mcmc
+1 modes present
+14 blocks
+mode clusters
+evidence
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-10/sbms/sub-SLC01_ses-1/sbm-nd-o_desc-fit.npy

@@ -1,0 +1,15 @@
+==========================
+==========================
+Thu Apr 25 13:31:56 EDT 2024
+--------------------------
+type-spatial_size-225_symm-True_braindiv-whl_nrois-162 seswise 15 19 h True 12000 100000 100
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-15/corr_mats/sub-SLC07_ses-2_desc-corr-mat.gt.gz
+h SBM
+heuristic
+mcmc
+1 modes present
+30 blocks
+mode clusters
+evidence
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/density-15/sbms/sub-SLC07_ses-2/sbm-dc-h_desc-fit.npy
+slurmstepd: error: *** JOB 5932520 ON compute-a8-20 CANCELLED AT 2024-04-25T15:01:19 DUE TO TIME LIMIT ***

@@ -1,0 +1,11 @@
+==========================
+==========================
+Tue Apr 23 23:32:06 EDT 2024
+--------------------------
+type-spatial_size-225_symm-True_braindiv-whl_nrois-162 seswise 15 30 a True 10 100 100
+Traceback (most recent call last):
+  File "/scratch/zt1/project/pessoa-prj/user/govindas/network_estimation/02c-desc-fit-sbm.py", line 303, in <module>
+    main()
+  File "/scratch/zt1/project/pessoa-prj/user/govindas/network_estimation/02c-desc-fit-sbm.py", line 222, in main
+    args.graph_file = all_graphs[args.graph_file]
+IndexError: list index out of range
