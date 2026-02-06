@@ -1,0 +1,74 @@
+#!/bin/bash
+#SBATCH --job-name="aSBM"
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time 4-00:00:00
+#SBATCH --mem-per-cpu=7G
+#SBATCH --oversubscribe
+#SBATCH --partition=standard
+#SBATCH --array=0-4 # subjects
+#SBATCH --output=./log/indiv_aSBM_%a.out
+#SBATCH --account=pessoa-prj-aac
+
+source ~/.bashrc
+conda activate gt
+
+PARC_DESC=${1} #"NEWMAX_ROIs_final_gm_104_2mm" #"ABA_ROIs_final_gm_36"
+ANALYSIS=${2} #"trial-end"
+GRAPH_DEF=${3} # constructed
+GRAPH_METHOD=${4} # pearson
+THRESHOLDING=${5} # signed/unsigned
+EDGE_DEF="binary"
+EDGE_DENSITY=${6} # 10, 20
+LAYER_DEF="individual"
+DATA_UNIT=${7} # ses, sub, grp
+COND=${8} #highT, highR, lowT, lowR
+
+SBM="a" # assortative
+DC="True" # deg-corr
+
+WAIT=${9} # 24,000
+MCMC_LEN=${10} # 40,000
+
+B=${11} # [1, 41, 82, 122, 162]
+GAMMA=${12} # 0.5 used only in mod.max.state
+
+SEED=${13} # 100
+
+GRAPH_IDX=$SLURM_ARRAY_TASK_ID
+
+echo "=========================="
+echo "=========================="
+
+date
+
+echo "--------------------------"
+
+echo ${ALL_GRAPHS_FILE}
+
+python 02a-graph-individual-binary_desc-fit-sbm.py \
+	${PARC_DESC} \
+	${ANALYSIS} \
+	${GRAPH_DEF} \
+	${GRAPH_METHOD} \
+	${THRESHOLDING} \
+	${EDGE_DEF} \
+	${EDGE_DENSITY} \
+	${LAYER_DEF} \
+	${DATA_UNIT} \
+	${COND} \
+	${GRAPH_IDX} \
+	${SBM} ${DC} \
+	${WAIT} ${MCMC_LEN} \
+	${B} \
+	${GAMMA} \
+	${SEED}
+
+date
+
+exit $ECODE
+
+# sbatch 02a-graph-individual-binary_model-aSBM_desc-fit-sbm.sh \
+# NEWMAX_ROIs_final_gm_104_2mm \
+# constructed pearson signed 20 sub highT \
+# 24000 100000 1 2.0 100

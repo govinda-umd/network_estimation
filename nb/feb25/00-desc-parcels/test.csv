@@ -1,0 +1,252 @@
+old_roi,name,roi
+1,"R-Frontal pole, cerebral cortex (FRP,184) 1",1
+2,"R-Somatomotor areas (MO,500) 1",2
+3,"R-Somatomotor areas (MO,500) 2",3
+4,"R-Somatomotor areas (MO,500) 3",4
+5,"R-Somatomotor areas (MO,500) 4",5
+6,"R-Somatomotor areas (MO,500) 5",6
+7,"R-Somatomotor areas (MO,500) 6",7
+8,"R-Somatomotor areas (MO,500) 7",8
+9,"R-Somatosensory areas (SS,453) 1",9
+10,"R-Somatosensory areas (SS,453) 2",10
+11,"R-Somatosensory areas (SS,453) 3",11
+12,"R-Somatosensory areas (SS,453) 4",12
+13,"R-Somatosensory areas (SS,453) 5",13
+14,"R-Somatosensory areas (SS,453) 6",14
+15,"R-Somatosensory areas (SS,453) 7",15
+16,"R-Gustatory areas (GU,1057) 1",16
+17,"R-Visceral area (VISC,677) 1",17
+18,"R-Auditory areas (AUD,247) 1",18
+19,"R-Visual areas (VIS,669) 1",19
+20,"R-Visual areas (VIS,669) 2",20
+21,"R-Anterior cingulate area (ACA,31) 1",21
+22,"R-Anterior cingulate area (ACA,31) 2",22
+23,"R-Prelimbic area (PL,972) 1",23
+24,"R-Infralimbic area (ILA,44) 1",24
+25,"R-Orbital area (ORB,714) 1",25
+26,"R-Orbital area (ORB,714) 2",26
+27,"R-Agranular insular area (AI,95) 1",27
+28,"R-Agranular insular area (AI,95) 2",28
+29,"R-Retrosplenial area (RSP,254) 1",29
+30,"R-Retrosplenial area (RSP,254) 2",30
+31,"R-Posterior parietal association areas (PTLp,22) 1",31
+32,"R-Temporal association areas (TEa,541) 1",32
+33,"R-Perirhinal area (PERI,922) 1",33
+34,"R-Ectorhinal area (ECT,895) 1",34
+35,"R-Main olfactory bulb (MOB,507) 1",35
+36,"R-Main olfactory bulb (MOB,507) 2",36
+37,"R-Main olfactory bulb (MOB,507) 3",37
+38,"R-Accessory olfactory bulb (AOB,151) 1",38
+39,"R-Anterior olfactory nucleus (AON,159) 1",39
+40,"R-Taenia tecta (TT,589) 1",40
+41,"R-Dorsal peduncular area (DP,814) 1",41
+42,"R-Piriform area (PIR,961) 1",42
+43,"R-Piriform area (PIR,961) 2",43
+44,"R-Piriform area (PIR,961) 3",44
+45,"R-Nucleus of the lateral olfactory tract (NLOT,619) 1",45
+46,"R-Cortical amygdalar area (COA,631) 1",46
+47,"R-Piriform-amygdalar area (PAA,788) 1",47
+48,"R-Postpiriform transition area (TR,566) 1",48
+49,"R-Hippocampal region (HIP,1080) 1",49
+50,"R-Hippocampal region (HIP,1080) 2",50
+51,"R-Hippocampal region (HIP,1080) 3",51
+52,"R-Hippocampal region (HIP,1080) 4",52
+53,"R-Hippocampal region (HIP,1080) 5",53
+54,"R-Retrohippocampal region (RHP,822) 1",54
+55,"R-Retrohippocampal region (RHP,822) 2",55
+56,"R-Retrohippocampal region (RHP,822) 3",56
+57,"R-Retrohippocampal region (RHP,822) 4",57
+58,"R-Retrohippocampal region (RHP,822) 5",58
+59,"R-Claustrum (CLA,583) 1",59
+60,"R-Endopiriform nucleus (EP,942) 1",60
+61,"R-Lateral amygdalar nucleus (LA,131) 1",61
+62,"R-Basolateral amygdalar nucleus (BLA,295) 1",62
+63,"R-Basomedial amygdalar nucleus (BMA,319) 1",63
+64,"R-Posterior amygdalar nucleus (PA,780) 1",64
+65,"R-Striatum dorsal region (STRd,485) 1",65
+66,"R-Striatum dorsal region (STRd,485) 2",66
+67,"R-Striatum dorsal region (STRd,485) 3",67
+68,"R-Striatum dorsal region (STRd,485) 4",68
+69,"R-Striatum dorsal region (STRd,485) 5",69
+70,"R-Striatum dorsal region (STRd,485) 6",70
+71,"R-Striatum dorsal region (STRd,485) 7",71
+72,"R-Striatum ventral region (STRv,493) 1",72
+73,"R-Striatum ventral region (STRv,493) 2",73
+74,"R-Lateral septal complex (LSX,275) 1",74
+75,"R-Striatum-like amygdalar nuclei (sAMY,278) 1",75
+76,"R-Pallidum, dorsal region (PALd,818) 1",76
+77,"R-Pallidum, ventral region (PALv,835) 1",77
+78,"R-Pallidum, medial region (PALm,826) 1",78
+79,"R-Pallidum, caudal region (PALc,809) 1",79
+80,"R-Thalamus, sensory-motor cortex related (DORsm,864) 1",80
+81,"R-Thalamus, sensory-motor cortex related (DORsm,864) 2",81
+82,"R-Thalamus, polymodal association cortex related (DORpm,856) 1",82
+83,"R-Thalamus, polymodal association cortex related (DORpm,856) 2",83
+84,"R-Thalamus, polymodal association cortex related (DORpm,856) 3",84
+85,"R-Thalamus, polymodal association cortex related (DORpm,856) 4",85
+86,"R-Thalamus, polymodal association cortex related (DORpm,856) 5",86
+87,"R-Periventricular zone (PVZ,157) 1",87
+88,"R-Periventricular region (PVR,141) 1",88
+89,"R-Hypothalamic medial zone (MEZ,467) 1",89
+90,"R-Hypothalamic lateral zone (LZ,290) 1",90
+91,"R-Hypothalamic lateral zone (LZ,290) 2",91
+92,"R-Midbrain, sensory related (MBsen,339) 1",92
+93,"R-Midbrain, sensory related (MBsen,339) 2",93
+94,"R-Midbrain, motor related (MBmot,323) 1",94
+95,"R-Midbrain, motor related (MBmot,323) 2",95
+96,"R-Midbrain, motor related (MBmot,323) 3",96
+97,"R-Midbrain, motor related (MBmot,323) 4",97
+98,"R-Midbrain, motor related (MBmot,323) 5",98
+99,"R-Midbrain, motor related (MBmot,323) 6",99
+100,"R-Midbrain, motor related (MBmot,323) 7",100
+101,"R-Midbrain, motor related (MBmot,323) 8",101
+102,"R-Midbrain, behavioral state related (MBsta,348) 1",102
+103,"R-Pons, sensory related (P-sen,1132) 1",103
+104,"R-Pons, sensory related (P-sen,1132) 2",104
+105,"R-Pons, motor related (P-mot,987) 1",105
+106,"R-Pons, motor related (P-mot,987) 2",106
+107,"R-Pons, motor related (P-mot,987) 3",107
+108,"R-Pons, behavioral state related (P-sat,1117) 1",108
+109,"R-Medulla, sensory related (MY-sen,386) 1",109
+110,"R-Medulla, motor related (MY-mot,370) 1",110
+111,"R-Medulla, motor related (MY-mot,370) 2",111
+112,"R-Medulla, motor related (MY-mot,370) 3",112
+113,"R-Medulla, motor related (MY-mot,370) 4",113
+114,"R-Medulla, behavioral state related (MY-sat,379) 1",114
+115,"R-Cerebellar cortex (CBX,528) 1",115
+116,"R-Cerebellar cortex (CBX,528) 2",116
+117,"R-Cerebellar cortex (CBX,528) 3",117
+118,"R-Cerebellar cortex (CBX,528) 4",118
+119,"R-Cerebellar cortex (CBX,528) 5",119
+120,"R-Cerebellar cortex (CBX,528) 6",120
+121,"R-Cerebellar cortex (CBX,528) 7",121
+122,"R-Cerebellar cortex (CBX,528) 8",122
+123,"R-Cerebellar cortex (CBX,528) 9",123
+124,"R-Cerebellar cortex (CBX,528) 10",124
+125,"R-Cerebellar cortex (CBX,528) 11",125
+126,"R-Cerebellar nuclei (CBN,519) 1",126
+127,"L-Frontal pole, cerebral cortex (FRP,184) 1",127
+128,"L-Somatomotor areas (MO,500) 1",128
+129,"L-Somatomotor areas (MO,500) 2",129
+130,"L-Somatomotor areas (MO,500) 3",130
+131,"L-Somatomotor areas (MO,500) 4",131
+132,"L-Somatomotor areas (MO,500) 5",132
+133,"L-Somatomotor areas (MO,500) 6",133
+134,"L-Somatomotor areas (MO,500) 7",134
+135,"L-Somatosensory areas (SS,453) 1",135
+136,"L-Somatosensory areas (SS,453) 2",136
+137,"L-Somatosensory areas (SS,453) 3",137
+138,"L-Somatosensory areas (SS,453) 4",138
+139,"L-Somatosensory areas (SS,453) 5",139
+140,"L-Somatosensory areas (SS,453) 6",140
+141,"L-Somatosensory areas (SS,453) 7",141
+142,"L-Gustatory areas (GU,1057) 1",142
+143,"L-Visceral area (VISC,677) 1",143
+144,"L-Auditory areas (AUD,247) 1",144
+145,"L-Visual areas (VIS,669) 1",145
+146,"L-Visual areas (VIS,669) 2",146
+147,"L-Visual areas (VIS,669) 3",147
+148,"L-Anterior cingulate area (ACA,31) 1",148
+149,"L-Anterior cingulate area (ACA,31) 2",149
+150,"L-Prelimbic area (PL,972) 1",150
+151,"L-Infralimbic area (ILA,44) 1",151
+152,"L-Orbital area (ORB,714) 1",152
+153,"L-Orbital area (ORB,714) 2",153
+154,"L-Agranular insular area (AI,95) 1",154
+155,"L-Agranular insular area (AI,95) 2",155
+156,"L-Retrosplenial area (RSP,254) 1",156
+157,"L-Retrosplenial area (RSP,254) 2",157
+158,"L-Posterior parietal association areas (PTLp,22) 1",158
+159,"L-Temporal association areas (TEa,541) 1",159
+160,"L-Perirhinal area (PERI,922) 1",160
+161,"L-Ectorhinal area (ECT,895) 1",161
+162,"L-Main olfactory bulb (MOB,507) 1",162
+163,"L-Main olfactory bulb (MOB,507) 2",163
+164,"L-Main olfactory bulb (MOB,507) 3",164
+165,"L-Accessory olfactory bulb (AOB,151) 1",165
+166,"L-Anterior olfactory nucleus (AON,159) 1",166
+167,"L-Taenia tecta (TT,589) 1",167
+168,"L-Dorsal peduncular area (DP,814) 1",168
+169,"L-Piriform area (PIR,961) 1",169
+170,"L-Piriform area (PIR,961) 2",170
+171,"L-Piriform area (PIR,961) 3",171
+172,"L-Nucleus of the lateral olfactory tract (NLOT,619) 1",172
+173,"L-Cortical amygdalar area (COA,631) 1",173
+174,"L-Piriform-amygdalar area (PAA,788) 1",174
+175,"L-Postpiriform transition area (TR,566) 1",175
+176,"L-Hippocampal region (HIP,1080) 1",176
+177,"L-Hippocampal region (HIP,1080) 2",177
+178,"L-Hippocampal region (HIP,1080) 3",178
+179,"L-Hippocampal region (HIP,1080) 4",179
+180,"L-Hippocampal region (HIP,1080) 5",180
+181,"L-Retrohippocampal region (RHP,822) 1",181
+182,"L-Retrohippocampal region (RHP,822) 2",182
+183,"L-Retrohippocampal region (RHP,822) 3",183
+184,"L-Retrohippocampal region (RHP,822) 4",184
+185,"L-Claustrum (CLA,583) 1",185
+186,"L-Endopiriform nucleus (EP,942) 1",186
+187,"L-Lateral amygdalar nucleus (LA,131) 1",187
+188,"L-Basolateral amygdalar nucleus (BLA,295) 1",188
+189,"L-Basomedial amygdalar nucleus (BMA,319) 1",189
+190,"L-Posterior amygdalar nucleus (PA,780) 1",190
+191,"L-Striatum dorsal region (STRd,485) 1",191
+192,"L-Striatum dorsal region (STRd,485) 2",192
+193,"L-Striatum dorsal region (STRd,485) 3",193
+194,"L-Striatum dorsal region (STRd,485) 4",194
+195,"L-Striatum dorsal region (STRd,485) 5",195
+196,"L-Striatum dorsal region (STRd,485) 6",196
+197,"L-Striatum dorsal region (STRd,485) 7",197
+198,"L-Striatum ventral region (STRv,493) 1",198
+199,"L-Striatum ventral region (STRv,493) 2",199
+200,"L-Lateral septal complex (LSX,275) 1",200
+201,"L-Striatum-like amygdalar nuclei (sAMY,278) 1",201
+202,"L-Pallidum, dorsal region (PALd,818) 1",202
+203,"L-Pallidum, ventral region (PALv,835) 1",203
+204,"L-Pallidum, medial region (PALm,826) 1",204
+205,"L-Pallidum, caudal region (PALc,809) 1",205
+206,"L-Thalamus, sensory-motor cortex related (DORsm,864) 1",206
+207,"L-Thalamus, sensory-motor cortex related (DORsm,864) 2",207
+208,"L-Thalamus, polymodal association cortex related (DORpm,856) 1",208
+209,"L-Thalamus, polymodal association cortex related (DORpm,856) 2",209
+210,"L-Thalamus, polymodal association cortex related (DORpm,856) 3",210
+211,"L-Thalamus, polymodal association cortex related (DORpm,856) 4",211
+212,"L-Thalamus, polymodal association cortex related (DORpm,856) 5",212
+213,"L-Periventricular zone (PVZ,157) 1",213
+214,"L-Periventricular region (PVR,141) 1",214
+215,"L-Hypothalamic medial zone (MEZ,467) 1",215
+216,"L-Hypothalamic lateral zone (LZ,290) 1",216
+217,"L-Hypothalamic lateral zone (LZ,290) 2",217
+218,"L-Midbrain, sensory related (MBsen,339) 1",218
+219,"L-Midbrain, sensory related (MBsen,339) 2",219
+220,"L-Midbrain, motor related (MBmot,323) 1",220
+221,"L-Midbrain, motor related (MBmot,323) 2",221
+222,"L-Midbrain, motor related (MBmot,323) 3",222
+223,"L-Midbrain, motor related (MBmot,323) 4",223
+224,"L-Midbrain, motor related (MBmot,323) 5",224
+225,"L-Midbrain, motor related (MBmot,323) 6",225
+226,"L-Midbrain, motor related (MBmot,323) 7",226
+227,"L-Midbrain, motor related (MBmot,323) 8",227
+228,"L-Midbrain, behavioral state related (MBsta,348) 1",228
+229,"L-Pons, sensory related (P-sen,1132) 1",229
+230,"L-Pons, sensory related (P-sen,1132) 2",230
+231,"L-Pons, motor related (P-mot,987) 1",231
+232,"L-Pons, motor related (P-mot,987) 2",232
+233,"L-Pons, motor related (P-mot,987) 3",233
+234,"L-Pons, behavioral state related (P-sat,1117) 1",234
+235,"L-Medulla, sensory related (MY-sen,386) 1",235
+236,"L-Medulla, motor related (MY-mot,370) 1",236
+237,"L-Medulla, motor related (MY-mot,370) 2",237
+238,"L-Medulla, motor related (MY-mot,370) 3",238
+239,"L-Medulla, motor related (MY-mot,370) 4",239
+240,"L-Medulla, behavioral state related (MY-sat,379) 1",240
+241,"L-Cerebellar cortex (CBX,528) 1",241
+242,"L-Cerebellar cortex (CBX,528) 2",242
+243,"L-Cerebellar cortex (CBX,528) 3",243
+244,"L-Cerebellar cortex (CBX,528) 4",244
+245,"L-Cerebellar cortex (CBX,528) 5",245
+246,"L-Cerebellar cortex (CBX,528) 6",246
+247,"L-Cerebellar cortex (CBX,528) 7",247
+248,"L-Cerebellar cortex (CBX,528) 8",248
+249,"L-Cerebellar cortex (CBX,528) 9",249
+250,"L-Cerebellar cortex (CBX,528) 10",250
+251,"L-Cerebellar nuclei (CBN,519) 1",251

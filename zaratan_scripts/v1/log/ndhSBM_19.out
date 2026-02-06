@@ -1,0 +1,17 @@
+==========================
+==========================
+Sun Jun  9 16:15:43 EDT 2024
+--------------------------
+6652514
+--------------------------
+19 h False 12000 100000 100
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/reconstructed_graph/normal_dist/roi_timeseries/sub-SLC07_ses-2_desc-roi-ts.txt
+h SBM
+heuristic
+mcmc
+2 modes present
+1 blocks
+2 blocks
+mode clusters
+evidence
+/home/govindas/scratch/mouse_dataset/roi_results/type-spatial_size-225_symm-True_braindiv-whl_nrois-162/seswise/reconstructed_graph/normal_dist/sbms/sub-SLC07_ses-2/sbm-nd-h_desc-fit.npy

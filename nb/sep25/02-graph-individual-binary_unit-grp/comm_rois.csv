@@ -1,0 +1,192 @@
+comm,roi_id,name,membership
+1,43,"R-Main olfactory bulb (MOB,507)",0.9922480620155039
+1,156,"L-Thalamus, polymodal association cortex related (DORpm,942)",0.9922480620155039
+1,149,"L-Lateral septal complex (LSX,361)",0.9922480620155039
+1,154,"L-Pallidum, caudal region (PALc,895)",0.9922480620155039
+1,129,"L-Main olfactory bulb (MOB,593)",0.9922480620155039
+1,132,"L-Taenia tecta (TT,675)",0.9922480620155039
+1,131,"L-Anterior olfactory nucleus (AON,245)",0.9922480620155039
+1,68,"R-Pallidum, caudal region (PALc,809)",0.9922480620155039
+1,63,"R-Lateral septal complex (LSX,275)",0.9922480620155039
+1,70,"R-Thalamus, polymodal association cortex related (DORpm,856)",0.9922480620155039
+1,69,"R-Thalamus, sensory-motor cortex related (DORsm,864)",0.9922480620155039
+1,46,"R-Taenia tecta (TT,589)",0.9922480620155039
+1,130,"L-Accessory olfactory bulb (AOB,237)",0.9912565350639985
+1,155,"L-Thalamus, sensory-motor cortex related (DORsm,950)",0.9884021392945135
+1,86,"L-Frontal pole, cerebral cortex (FLP,184)",0.9497776575926928
+1,47,"R-Dorsal peduncular area (DP,814)",0.9496124031007752
+1,44,"R-Accessory olfactory bulb (AOB,151)",0.9496124031007752
+1,0,"R-Frontal pole, cerebral cortex (FRP,184)",0.9496124031007752
+1,30,"R-Infralimbic area (ILA,44)",0.9496124031007752
+1,29,"R-Prelimbic area (PL,972)",0.9496124031007752
+1,33,"R-Orbital area, ventrolateral part (ORBvl,746)",0.9496124031007752
+1,32,"R-Orbital area, medial part (ORBm,731)",0.9496124031007752
+1,118,"L-Orbital area, medial part (ORBm,817)",0.9496124031007752
+1,133,"L-Dorsal peduncular area (DP,900)",0.9496124031007752
+1,115,"L-Prelimbic area (PL,1058)",0.9496124031007752
+1,119,"L-Orbital area, ventrolateral part (ORBvl,832)",0.9496124031007752
+1,116,"L-Infralimbic area (ILA,130)",0.9496124031007752
+1,31,"R-Orbital area, lateral part (ORBl,723)",0.9459317348717025
+2,1,"R-Primary motor area (MOp,985)",1.0
+2,3,"R-Primary somatosensory area, nose (SSp-n,353)",1.0
+2,9,"R-Primary somatosensory area, unassigned (SSp-un,182305689)",1.0
+2,7,"R-Primary somatosensory area, upper limb (SSp-ul,369)",1.0
+2,10,"R-Supplemental somatosensory area (SSs,378)",1.0
+2,96,"L-Supplemental somatosensory area (SSs,464)",1.0
+2,89,"L-Primary somatosensory area, nose (SSp-n,439)",1.0
+2,87,"L-Primary motor area (MOp,1071)",1.0
+2,102,"L-Ventral auditory area (AUDv,1104)",1.0
+2,92,"L-Primary somatosensory area, mouth (SSp-m,431)",1.0
+2,93,"L-Primary somatosensory area, upper limb (SSp-ul,455)",1.0
+2,95,"L-Primary somatosensory area, unassigned (SSp-un,182305775)",0.9999549305931134
+2,6,"R-Primary somatosensory area, mouth (SSp-m,345)",0.9961240310077519
+2,4,"R-Primary somatosensory area, barrel field (SSp-bfd,329)",0.9961240310077519
+2,5,"R-Primary somatosensory area, lower limb (SSp-ll,337)",0.9884171624301424
+2,91,"L-Primary somatosensory area, lower limb (SSp-ll,423)",0.9883720930232558
+2,109,"L-Anterior area (VISa,312782632)",0.9883720930232558
+2,99,"L-Dorsal auditory area (AUDd,1097)",0.9883720930232558
+2,94,"L-Primary somatosensory area, trunk (SSp-tr,447)",0.9883720930232558
+2,100,"L-Primary auditory area (AUDp,1088)",0.9883720930232558
+2,90,"L-Primary somatosensory area, barrel field (SSp-bfd,415)",0.965386695511087
+2,104,"L-Anteromedial visual area (VISam,480)",0.3970614746709933
+3,11,"R-Gustatory areas (GU,1057)",1.0
+3,12,"R-Visceral area (VISC,677)",1.0
+3,61,"R-Striatum dorsal region (STRd,485)",1.0
+3,55,"R-Claustrum (CLA,583)",1.0
+3,97,"L-Gustatory areas (GU,1143)",1.0
+3,65,"R-Pallidum, dorsal region (PALd,818)",1.0
+3,151,"L-Pallidum, dorsal region (PALd,904)",1.0
+3,147,"L-Striatum dorsal region (STRd,571)",1.0
+3,34,"R-Agranular insular area, dorsal part (AId,104)",0.9999248843218557
+3,117,"L-Orbital area, lateral part (ORBl,809)",0.9810708491076258
+3,120,"L-Agranular insular area, dorsal part (AId,190)",0.9810708491076258
+3,88,"L-Secondary motor area (MOs,1079)",0.9809957334294813
+3,2,"R-Secondary motor area (MOs,993)",0.9806201550387597
+3,27,"R-Anterior cingulate area, dorsal part (ACAd,39)",0.29457364341085274
+3,114,"L-Anterior cingulate area, ventral part (ACAv,134)",0.29457364341085274
+3,28,"R-Anterior cingulate area, ventral part (ACAv,48)",0.29457364341085274
+3,113,"L-Anterior cingulate area, dorsal part (ACAd,125)",0.29457364341085274
+4,28,"R-Anterior cingulate area, ventral part (ACAv,48)",0.7054263565891473
+4,27,"R-Anterior cingulate area, dorsal part (ACAd,39)",0.7054263565891473
+4,114,"L-Anterior cingulate area, ventral part (ACAv,134)",0.7054263565891473
+4,113,"L-Anterior cingulate area, dorsal part (ACAd,125)",0.7054263565891473
+4,22,"R-posteromedial visual area (VISpm,533)",0.5813953488372093
+4,39,"R-Retrosplenial area, ventral part (RSPv,886)",0.5813953488372093
+4,38,"R-Retrosplenial area, dorsal part (RSPd,879)",0.5813953488372093
+4,37,"R-Retrosplenial area, lateral agranular part (RSPagl,894)",0.5813953488372093
+4,18,"R-Anteromedial visual area (VISam,394)",0.5813953488372093
+4,124,"L-Retrosplenial area, dorsal part (RSPd,965)",0.5813953488372093
+4,8,"R-Primary somatosensory area, trunk (SSp-tr,361)",0.5813953488372093
+4,23,"R-Anterior area (VISa,312782546)",0.5813953488372093
+4,123,"L-Retrosplenial area, lateral agranular part (RSPagl,980)",0.5813953488372093
+4,125,"L-Retrosplenial area, ventral part (RSPv,972)",0.5813953488372093
+4,108,"L-posteromedial visual area (VISpm,619)",0.5746800072111051
+4,40,"R-Temporal association areas (TEa,541)",0.5478637101135749
+4,104,"L-Anteromedial visual area (VISam,480)",0.32008292770867136
+5,17,"R-Anterolateral visual area (VISal,402)",1.0
+5,15,"R-Posterior auditory area (AUDpo,1027)",1.0
+5,24,"R-Laterointermediate area (VISli,312782574)",1.0
+5,26,"R-Postrhinal area (VISpor,312782628)",1.0
+5,20,"R-Primary visual area (VISp,385)",1.0
+5,21,"R-Posterolateral visual area (VISpl,425)",1.0
+5,25,"R-Rostrolateral visual area (VISrl,417)",1.0
+5,19,"R-Lateral visual area (VISl,409)",1.0
+5,14,"R-Primary auditory area (AUDp,1002)",1.0
+5,13,"R-Dorsal auditory area (AUDd,1011)",1.0
+5,126,"L-Temporal association areas (TEa,627)",1.0
+5,16,"R-Ventral auditory area (AUDv,1018)",0.9977014602487831
+5,101,"L-Posterior auditory area (AUDpo,1113)",0.9457364341085271
+5,111,"L-Rostrolateral visual area (VISrl,503)",0.9457364341085271
+5,112,"L-Postrhinal area (VISpor,312782714)",0.9457364341085271
+5,110,"L-Laterointermediate area (VISli,312782660)",0.9457364341085271
+5,106,"L-Primary visual area (VISp,471)",0.9457364341085271
+5,103,"L-Anterolateral visual area (VISal,488)",0.9457364341085271
+5,105,"L-Lateral visual area (VISl,495)",0.9457364341085271
+5,107,"L-Posterolateral visual area (VISpl,511)",0.9436482182561144
+5,40,"R-Temporal association areas (TEa,541)",0.4126404663181299
+5,108,"L-posteromedial visual area (VISpm,619)",0.40957574664984076
+5,37,"R-Retrosplenial area, lateral agranular part (RSPagl,894)",0.4069767441860465
+5,39,"R-Retrosplenial area, ventral part (RSPv,886)",0.4069767441860465
+5,23,"R-Anterior area (VISa,312782546)",0.4069767441860465
+5,22,"R-posteromedial visual area (VISpm,533)",0.4069767441860465
+5,38,"R-Retrosplenial area, dorsal part (RSPd,879)",0.4069767441860465
+5,8,"R-Primary somatosensory area, trunk (SSp-tr,361)",0.4069767441860465
+5,124,"L-Retrosplenial area, dorsal part (RSPd,965)",0.4069767441860465
+5,123,"L-Retrosplenial area, lateral agranular part (RSPagl,980)",0.4069767441860465
+5,18,"R-Anteromedial visual area (VISam,394)",0.4069767441860465
+5,125,"L-Retrosplenial area, ventral part (RSPv,972)",0.4069767441860465
+5,104,"L-Anteromedial visual area (VISam,480)",0.27949041523946877
+6,41,"R-Perirhinal area (PERI,922)",0.9844961240310077
+6,35,"R-Agranular insular area, posterior part (AIp,111)",0.9844961240310077
+6,42,"R-Ectorhinal area (ECT,895)",0.9844961240310077
+6,143,"L-Lateral amygdalar nucleus (LA,217)",0.9844961240310077
+6,121,"L-Agranular insular area, posterior part (AIp,197)",0.9844961240310077
+6,139,"L-Hippocampal region (HIP,1166)",0.9844961240310077
+6,128,"L-Ectorhinal area (ECT,981)",0.9844961240310077
+6,127,"L-Perirhinal area (PERI,1008)",0.9844961240310077
+6,98,"L-Visceral area (VISC,763)",0.9844961240310077
+6,53,"R-Hippocampal region (HIP,1080)",0.9844961240310077
+6,57,"R-Lateral amygdalar nucleus (LA,131)",0.9844961240310077
+6,54,"R-Retrohippocampal region (RHP,822)",0.9844961240310077
+6,140,"L-Retrohippocampal region (RHP,908)",0.9844961240310077
+6,141,"L-Claustrum (CLA,669)",0.9844961240310077
+6,58,"R-Basolateral amygdalar nucleus (BLA,295)",0.9540442281112913
+6,144,"L-Basolateral amygdalar nucleus (BLA,381)",0.4616910041463854
+7,153,"L-Pallidum, medial region (PALm,912)",1.0
+7,152,"L-Pallidum, ventral region (PALv,921)",1.0
+7,159,"L-Hypothalamic medial zone (MEZ,553)",1.0
+7,160,"L-Hypothalamic lateral zone (LZ,376)",1.0
+7,67,"R-Pallidum, medial region (PALm,826)",1.0
+7,64,"R-Striatum-like amygdalar nuclei (sAMY,278)",1.0
+7,74,"R-Hypothalamic lateral zone (LZ,290)",1.0
+7,71,"R-Periventricular zone (PVZ,157)",1.0
+7,72,"R-Periventricular region (PVR,141)",1.0
+7,73,"R-Hypothalamic medial zone (MEZ,467)",1.0
+7,51,"R-Piriform-amygdalar area (PAA,788)",1.0
+7,50,"R-Cortical amygdalar area (COA,631)",1.0
+7,157,"L-Periventricular zone (PVZ,243)",1.0
+7,158,"L-Periventricular region (PVR,227)",1.0
+7,59,"R-Basomedial amygdalar nucleus (BMA,319)",0.999879814914969
+7,135,"L-Nucleus of the lateral olfactory tract (NLOT,705)",0.9997295835586804
+7,148,"L-Striatum ventral region (STRv,579)",0.9983775013520821
+7,150,"L-Striatum-like amygdalar nuclei (sAMY,364)",0.997025419145484
+7,49,"R-Nucleus of the lateral olfactory tract (NLOT,619)",0.993029265068205
+7,66,"R-Pallidum, ventral region (PALv,835)",0.9926386635418545
+7,60,"R-Posterior amygdalar nucleus (PA,780)",0.9922480620155039
+7,56,"R-Endopiriform nucleus (EP,942)",0.9922480620155039
+7,45,"R-Anterior olfactory nucleus (AON,159)",0.9922480620155039
+7,48,"R-Piriform area (PIR,961)",0.9922480620155039
+7,36,"R-Agranular insular area, ventral part (AIv,119)",0.9922480620155039
+7,62,"R-Striatum ventral region (STRv,493)",0.9922480620155039
+7,134,"L-Piriform area (PIR,1047)",0.9302325581395349
+7,146,"L-Posterior amygdalar nucleus (PA,866)",0.9302325581395349
+7,136,"L-Cortical amygdalar area (COA,717)",0.9302325581395349
+7,137,"L-Piriform-amygdalar area (PAA,874)",0.9302325581395349
+7,145,"L-Basomedial amygdalar nucleus (BMA,405)",0.9302325581395349
+7,142,"L-Endopiriform nucleus (EP,1028)",0.9266270055886064
+7,52,"R-Postpiriform transition area (TR,566)",0.8875668529535485
+7,122,"L-Agranular insular area, ventral part (AIv,205)",0.8694489513851331
+7,138,"L-Postpiriform transition area (TR,652)",0.8184604290607536
+7,144,"L-Basolateral amygdalar nucleus (BLA,381)",0.5228051198846223
+8,162,"L-Midbrain, motor related (MBmot,409)",0.9784568235082026
+8,75,"R-Midbrain, sensory related (MBsen,339)",0.9767441860465116
+8,161,"L-Midbrain, sensory related (MBsen,425)",0.9767441860465116
+8,76,"R-Midbrain, motor related (MBmot,323)",0.9758277747731507
+8,167,"L-Medulla, sensory related (MY-sen,472)",0.9709152094225105
+8,170,"L-Cerebellar cortex (CBX,614)",0.9694128958596238
+8,84,"R-Cerebellar cortex (CBX,528)",0.8848176191334656
+8,81,"R-Medulla, sensory related (MY-sen,386)",0.8824740099753621
+8,171,"L-Cerebellar nuclei (CBN,605)",0.8798449612403101
+8,169,"L-Medulla, behavioral state related (MY-sat,465)",0.8798449612403101
+8,168,"L-Medulla, motor related (MY-mot,456)",0.8798449612403101
+8,82,"R-Medulla, motor related (MY-mot,370)",0.8798449612403101
+8,85,"R-Cerebellar nuclei (CBN,519)",0.8798449612403101
+8,83,"R-Medulla, behavioral state related (MY-sat,379)",0.8798449612403101
+9,77,"R-Midbrain, behavioral state related (MBsta,348)",1.0
+9,78,"R-Pons, sensory related (P-sen,1132)",1.0
+9,79,"R-Pons, motor related (P-mot,987)",1.0
+9,80,"R-Pons, behavioral state related (P-sat,1117)",1.0
+9,163,"L-Midbrain, behavioral state related (MBsta,434)",0.9961240310077519
+9,166,"L-Pons, behavioral state related (P-sat,1203)",0.9961240310077519
+9,165,"L-Pons, motor related (P-mot,1073)",0.9961240310077519
+9,164,"L-Pons, sensory related (P-sen,1218)",0.9961240310077519

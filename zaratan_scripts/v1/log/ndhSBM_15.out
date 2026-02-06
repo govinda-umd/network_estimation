@@ -1,0 +1,8 @@
+==========================
+==========================
+Sun Jun  9 16:15:43 EDT 2024
+--------------------------
+6652510
+--------------------------
+/var/spool/slurmd/job6652510/slurm_script: line 54: 569966 Killed                  python 06a-desc-fit-sbm.py ${DESC} ${UNIT} ${RECONST_method} ${idx} ${SBM} ${DC} ${WAIT} ${MCMC_LEN} ${SEED}
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=6652510.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
