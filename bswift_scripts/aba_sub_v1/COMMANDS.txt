@@ -2,8 +2,64 @@ Main commands in to run:
 
 scp -r govindas@ada.umd.edu:~/network_estimation/bswift_scripts/aba_sub_v1 .
 
+#MODEL-FIT
+bash 02a-graph-individual-binary_model-aSBM_desc-run-fit-sbm.sh signed 20 highT
 bash 02a-graph-individual-binary_model-dcdSBM_desc-run-fit-sbm.sh signed 20 highT
+bash 02a-graph-individual-binary_model-dchSBM_desc-run-fit-sbm.sh signed 20 highT
+bash 02a-graph-individual-binary_model-nddSBM_desc-run-fit-sbm.sh signed 20 highT
+bash 02a-graph-individual-binary_model-ndhSBM_desc-run-fit-sbm.sh signed 20 highT
 
+bash 02a-graph-individual-binary_model-aSBM_desc-run-fit-sbm.sh signed 20 highR
+bash 02a-graph-individual-binary_model-dcdSBM_desc-run-fit-sbm.sh signed 20 highR
+bash 02a-graph-individual-binary_model-dchSBM_desc-run-fit-sbm.sh signed 20 highR
+bash 02a-graph-individual-binary_model-nddSBM_desc-run-fit-sbm.sh signed 20 highR
+bash 02a-graph-individual-binary_model-ndhSBM_desc-run-fit-sbm.sh signed 20 highR
+
+bash 02a-graph-individual-binary_model-aSBM_desc-run-fit-sbm.sh signed 20 lowT
+bash 02a-graph-individual-binary_model-dcdSBM_desc-run-fit-sbm.sh signed 20 lowT
+bash 02a-graph-individual-binary_model-dchSBM_desc-run-fit-sbm.sh signed 20 lowT
+bash 02a-graph-individual-binary_model-nddSBM_desc-run-fit-sbm.sh signed 20 lowT
+bash 02a-graph-individual-binary_model-ndhSBM_desc-run-fit-sbm.sh signed 20 lowT
+
+bash 02a-graph-individual-binary_model-aSBM_desc-run-fit-sbm.sh signed 20 lowR
+bash 02a-graph-individual-binary_model-dcdSBM_desc-run-fit-sbm.sh signed 20 lowR
+bash 02a-graph-individual-binary_model-dchSBM_desc-run-fit-sbm.sh signed 20 lowR
+bash 02a-graph-individual-binary_model-nddSBM_desc-run-fit-sbm.sh signed 20 lowR
+bash 02a-graph-individual-binary_model-ndhSBM_desc-run-fit-sbm.sh signed 20 lowR
+
+#ESTIMATES
 sbatch 02c-graph-individual-binary_model-aSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dcdSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dchSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-nddSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-ndhSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highT 100000 15000 2.0 100
 
+sbatch 02c-graph-individual-binary_model-aSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dcdSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dchSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-nddSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-ndhSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub highR 100000 15000 2.0 100
+
+sbatch 02c-graph-individual-binary_model-aSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dcdSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dchSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-nddSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowT 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-ndhSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowT 100000 15000 2.0 100
+
+sbatch 02c-graph-individual-binary_model-aSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dcdSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-dchSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-nddSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowR 100000 15000 2.0 100
+sbatch 02c-graph-individual-binary_model-ndhSBM_desc-indiv-level-estims.sh NEWMAX_ROIs_final_gm_100_2mm trial-end constructed pearson signed 20 sub lowR 100000 15000 2.0 100
+
+#DOWNLOAD MODEL-FIT
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highT/model-fits govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highT
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highR/model-fits govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highR
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowT/model-fits govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowT
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowR/model-fits govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowR
+
+#DOWNLOAD ESTIMATES
 rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highT/estimates govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highT
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highR/estimates govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-highR
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowT/estimates govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowT
+rsync -avz -e "ssh -T -o Compression=no -x" /data/homes/govindas/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowR/estimates govindas@ada.umd.edu:~/lab-data/aba/NEWMAX_ROIs_final_gm_100_2mm/analysis-trial-end/graph-constructed/method-pearson/threshold-signed/edge-binary/density-20/layer-individual/unit-sub/cond-lowR
