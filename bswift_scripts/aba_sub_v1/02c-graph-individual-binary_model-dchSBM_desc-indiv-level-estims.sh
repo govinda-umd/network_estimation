@@ -6,7 +6,7 @@
 #SBATCH --mem-per-cpu=20G
 #SBATCH --oversubscribe
 #SBATCH --partition=main
-#SBATCH --array=0-4 # subjects
+#SBATCH --array=5-24 # subjects
 #SBATCH --output=./log/indiv-lvl-estims_dchSBM_%a.out
 
 # Make sure caches/configs go somewhere writable on the node

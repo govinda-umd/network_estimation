@@ -6,7 +6,7 @@
 #SBATCH --mem-per-cpu=20G
 #SBATCH --oversubscribe
 #SBATCH --partition=standard
-#SBATCH --array=170-189
+#SBATCH --array=210-229
 #SBATCH --output=./log/indiv_ndhSBM_%a.out
 #SBATCH --account=pessoa-prj-aac
 

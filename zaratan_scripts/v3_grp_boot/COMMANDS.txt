@@ -1,0 +1,4 @@
+scp -r govindas@ada.umd.edu:/home/govindas/network_estimation/zaratan_scripts/v3_grp_boot .
+
+sbatch 02c-graph-individual-binary_model-nddSBM_desc-indiv-level-estims.sh allen ccfv2 whl 172 200 constructed pearson signed 20 grp-boot 100000 15000 100
+sbatch 02c-graph-individual-binary_model-ndhSBM_desc-indiv-level-estims.sh allen ccfv2 whl 172 200 constructed pearson signed 20 grp-boot 100000 15000 100
